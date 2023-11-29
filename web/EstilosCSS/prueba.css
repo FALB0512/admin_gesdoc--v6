@@ -1,0 +1,163 @@
+
+/* styles.css */
+
+/* Estilo para el cuerpo de la página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo para el contenedor del formulario */
+form {
+    background-color: #fffc;
+    padding: 5px;
+    max-width: -20%;
+    overflow: hidden;
+    margin-left: 0px; /* Ajusta el margen izquierdo para crear espacio para el menú */
+    /* Resto de tus estilos... */
+}
+
+
+/* Estilo para las filas de campos */
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Estilo para las cajas de campos */
+.form-box {
+    flex: 0 0 calc(50% - 10px);
+    margin-bottom: 20px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Estilo para las etiquetas de los campos */
+.form-box label {
+    font-weight: bold;
+    color: #555;
+    display: block;
+    width: 25%;
+   
+}
+
+/* Estilo para los campos de entrada de texto y textarea */
+.form-box input[type="text"],
+.form-box input[type="date"],
+.form-box textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    font-size: 15px; /* Ajusta el tamaño de la fuente según tus preferencias */
+}
+
+/* Estilo para el botón de envío */
+.form-submit {
+    text-align: center;
+}
+
+.form-submit input[type="submit"] {
+    background-color:  #05941f;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Estilo para el botón de envío al pasar el mouse */
+.form-submit input[type="submit"]:hover {
+    background-color:  #035213;
+}
+
+/* Estilo para el encabezado h1 */
+h1 {
+    text-align: center;
+    color: #333;
+
+}
+
+.form-box input[type="password"] {
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 15px; /* Ajusta el tamaño de la fuente según tus preferencias */
+}
+
+.form-box input[type="password"]:focus {
+  border-color: #007bff; /* Cambia el borde al enfocar el campo */
+}
+
+.form-box select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.form-box select:focus {
+  border-color: #007bff; /* Cambia el borde al enfocar el campo */
+}
+
+/* Estilos para la caja de carga de archivos */
+.file-upload {
+    display: inline-block;
+    position: relative;
+}
+
+.file-upload label {
+    background-color: #009688;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.file-upload label:hover {
+    background-color: #00796B;
+}
+
+
+/* Estilos para la caja de carga de archivos */
+.file-upload {
+    display: inline-block;
+    position: relative;
+}
+
+.file-upload label {
+    background-color: #009688;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.file-upload label:hover {
+    background-color: #00796B;
+}
+
+/* Estilos para ocultar el input de carga de archivos */
+.file-upload input[type="file"] {
+    display: none;
+}
+
+/*para cambiar la caja correo*/
+#correo{
+   width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    font-size: 15px; /* Ajusta el tamaño de la fuente según tus preferencias */
+    
+}
+

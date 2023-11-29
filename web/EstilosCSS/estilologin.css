@@ -1,0 +1,32 @@
+      /* Estilos para el icono de entrada */
+.input-with-icon {
+    position: relative;
+}
+
+.input-with-icon i {
+    position: absolute;
+    left: 5px; /* Ajusta la posición horizontal del icono */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px; /* Tamaño del icono (ajusta según tus necesidades) */
+}
+
+/* Estilos para el campo de entrada */
+.input-with-icon input {
+    padding-left: 30px; /* Ajusta el espacio para el icono */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    height: 40px; /* Ajusta la altura del campo (ajusta según tus necesidades) */
+    border: 1px solid #ccc; /* Añade un borde */
+    border-radius: 5px; /* Añade esquinas redondeadas */
+}
+
+/* Estilo para el texto "GESDOC-SENA" */
+.green-text {
+    color: green; /* Cambia el color a verde */
+}
+
+/* Estilo para el enlace de "Olvidaste la contraseña?" */
+.forgot-password-link {
+    color: black; /* Color inicial del texto */
+    text-decoration: none;
+    }

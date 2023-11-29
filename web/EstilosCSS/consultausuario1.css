@@ -1,0 +1,12 @@
+
+table th, table td {
+    font-size: 10px; /* Ajusta el tamaño de la fuente según tus preferencias */
+    white-space: nowrap; /* Evita que el contenido se divida en varias líneas */   
+}
+
+.table-container {
+    width: 0; /* Ajusta el ancho según tus necesidades */
+    margin-left: 190px; /* Ajusta el valor según el ancho de tu menú lateral */
+    margin-right: 20px; /* Ajusta el valor según el ancho de tu menú lateral */
+
+}

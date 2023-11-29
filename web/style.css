@@ -1,0 +1,111 @@
+:root{
+    --fondo-color:#f5f2f2;;
+    --items-color:#202020;
+    --border-color:#383838;
+    --text-color:#e7e7e7;
+}
+*{
+    padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+
+
+html{
+    font-size: 62.5%;
+    font-family: sans-serif;
+}
+aside{
+    background-color: var(--items-color);
+    width: 245px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom:0;
+    overflow-y: hidden;
+    margin-top: 60px;
+    transition: 0.5s;
+}
+aside:hover{
+    overflow-y: auto;
+}
+.desplegar{
+    transform: translateX(-100%);
+}
+aside::-webkit-scrollbar{
+    width: 8px;
+}
+aside::-webkit-scrollbar-thumb{
+    background-color: #909090;
+    border-radius: 5px;
+}
+.container-svg{
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 1px;
+    color: var(--text-color);
+}
+.container-svg div{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.container-svg div:hover{
+    background-color: #303030;
+}
+.container-svg div span{
+    margin-left: 15px;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+h2{
+    padding: 10px 20px;
+    color: #aaaaaa;
+}
+
+/* Estilos para el menú lateral */
+aside {
+    /* Tus otros estilos para el menú lateral */
+    position: fixed; /* Fija el menú lateral en su lugar */
+    top: 0; /* Coloca el menú en la parte superior */
+    left: 0; /* Coloca el menú en el lado izquierdo */
+    bottom: 0; /* Coloca el menú en la parte inferior */
+    overflow-y: auto; /* Agrega desplazamiento vertical si es necesario */
+    z-index: 1; /* Asegura que el menú esté encima del contenido */
+}
+
+/* Estilos para el contenido principal */
+section {
+    width: 80%;
+    height: 90%;
+    background-color: #ffff;
+    padding: 10px;
+    text-align: center;
+    position: absolute;
+    left: 59%;
+    top: 40%;
+    transform: translate(-50%, -45%);
+/*    background-color: red;*/
+    /*position: relative;*/
+    z-index: 0; /* Asegura que el contenido esté detrás del menú */
+}
+
+/* Estilos para el contenido dentro de la sección */
+section h1,
+section p {
+    margin: 0;
+}
+
+body.menu-open {
+    margin-left: 0; /* Desplaza el contenido principal para abrir el menú */
+}
+
+.img{
+     width: 18%;
+     position: absolute;
+     position: fixed;
+     padding: 10px;
+     text-align: center;
+}

@@ -1,0 +1,32 @@
+
+/* Establece el tamaño de fuente y la propiedad white-space para las celdas de la tabla */
+table th, table td {
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+/* Establece el ancho de la tabla y elimina los márgenes */
+.table-container {
+    width: 100%;
+}
+
+/* Estilo para la barra de búsqueda */
+/* Estilo para reducir el tamaño de la caja de búsqueda */
+.search-input {
+    font-size: 16px; /* Tamaño de fuente normal (puedes ajustarlo si es necesario) */
+    padding: 5px 10px; /* Espaciado interno reducido */
+    border: none;
+    border-bottom: 2px solid #007bff;  /* Borde inferior de 2 píxeles (puedes ajustarlo) */
+    width: 100px; /* Ancho reducido de la caja de búsqueda */
+    height: 30px; /* Altura reducida de la caja de búsqueda */
+    margin-bottom: 0px;
+}
+/*#search{
+    background-color: blue;
+    justify-items: left;
+}*/
+#search input{
+    width: 250px;
+    height: 40px;
+}
+
