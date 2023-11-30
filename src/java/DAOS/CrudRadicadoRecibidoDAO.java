@@ -47,8 +47,9 @@ public class CrudRadicadoRecibidoDAO {
                 recibido.setRadCiudad(rs.getString("radCiudad"));
                 recibido.setRadNumeroRadRespuesta(rs.getString("radNumeroRadRespuesta"));
                 recibido.setRadDependencias(rs.getString("radDependencias"));
-                recibido.setRadNombreDestinatario(rs.getString("radNombreDestinatario"));
+                recibido.setRadNombreDestinatario(rs.getString("radNombreDestinatario")); 
                 recibido.setRadArchivoPdf(rs.getString("radArchivoPdf"));
+                 recibido.setRadCorreoFuncionarioDestinatario(rs.getString("radCorreoFuncionarioDestinatario"));
                 
                 listarrecibidos.add(recibido);
                             
@@ -93,7 +94,7 @@ public class CrudRadicadoRecibidoDAO {
     
     
     public boolean agregarrecibido(radicadorecibido rec) {
-          String sql = "call gesdoc_sena.sp_AgregarRadicadoRecibido(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+          String sql = "call gesdoc_sena.sp_AgregarRadicadoRecibido(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
         try {
             con = cn.getConection();
@@ -113,6 +114,7 @@ public class CrudRadicadoRecibidoDAO {
             ps.setString(11, rec.getRadDependencias());
             ps.setString(12, rec.getRadNombreDestinatario());
             ps.setString(13, rec.getRadArchivoPdf());
+            ps.setString(14, rec.getRadCorreoFuncionarioDestinatario());
 
 
             // Ejecuta el procedimiento almacenado
@@ -175,6 +177,25 @@ public class CrudRadicadoRecibidoDAO {
             return false; // Indica que la operación falló
         }
 }
+    
+    public String obtenerCorreo(String correo) {
+        String sql = "SELECT radCorreoFuncionarioDestinatario FROM gesdoc_sena.tblradicadorecibido WHERE radCorreoFuncionarioDestinatario = ?";
+        try {
+            con = cn.getConection();
+            ps = con.prepareStatement(sql);
+            
+            ps.setString(1, correo);
+            
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getString("radCorreoFuncionarioDestinatario");
+            }
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return null;
+    }
+
     
 
     }
