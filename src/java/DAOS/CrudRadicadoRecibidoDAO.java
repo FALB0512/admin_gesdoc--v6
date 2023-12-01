@@ -179,7 +179,7 @@ public class CrudRadicadoRecibidoDAO {
 }
     
     public String obtenerCorreo(String correo) {
-        String sql = "SELECT radCorreoFuncionarioDestinatario FROM gesdoc_sena.tblradicadorecibido WHERE radCorreoFuncionarioDestinatario = ?";
+        String sql = "SELECT usuCorreo FROM gesdoc_sena.tblusuarios WHERE usuCorreo = ?";
         try {
             con = cn.getConection();
             ps = con.prepareStatement(sql);
@@ -188,7 +188,7 @@ public class CrudRadicadoRecibidoDAO {
             
             rs = ps.executeQuery();
             while (rs.next()) {
-                return rs.getString("radCorreoFuncionarioDestinatario");
+                return rs.getString("usuCorreo");
             }
         } catch (Exception e) {
             System.out.println("Error: " + e);

@@ -267,6 +267,43 @@ public class recibidoservlet extends HttpServlet {
                 } catch (MessagingException e) {
 
                 }
+                
+                
+                  try {
+                CrudRadicadoRecibidoDAO dao = new CrudRadicadoRecibidoDAO();
+
+                Message message = new MimeMessage(session);
+                message.setFrom(new InternetAddress(correo));
+
+                String destino = dao.obtenerCorreo(contrasena);
+
+                if (destino != null) {
+                    InternetAddress[] correos = {
+                        new InternetAddress(destino)
+                    };
+
+                    // Crear mensaje de correo
+                   
+                    String cuerpoMensaje = "Has asignado un nuevo radicado ";
+
+                    message.setRecipients(Message.RecipientType.TO, correos);
+                    message.setSubject("Inicio de Sesión Exitoso");
+                    message.setText(cuerpoMensaje);
+
+                    // Enviar el mensaje
+                    Transport.send(message);
+
+                    System.out.println("Correo electrónico enviado con éxito.");
+                } else {
+                    System.err.println("La dirección de correo electrónico de destino es nula. No se puede enviar el correo.");
+                }
+
+            } catch (MessagingException e) {
+                System.err.println("Error al enviar el correo electrónico: " + e.getMessage());
+                // Manejar la excepción adecuadamente, según tus necesidades.
+            }
+
+
 
                 acceso = listar; // Puedes ajustar esto según tus necesidades
 
