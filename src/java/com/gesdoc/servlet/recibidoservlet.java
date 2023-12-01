@@ -5,6 +5,7 @@
 package com.gesdoc.servlet;
 
 import DAOS.CrudRadicadoRecibidoDAO;
+import DAOS.CrudRadicadoRecibidoDAO;
 import DAOS.CrudSeguimientoUsuariosDAO;
 import Modelo.ConsultarSeguimientoUsuarios;
 import Modelo.radicadorecibido;
@@ -16,6 +17,15 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Properties;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
@@ -206,14 +216,66 @@ public class recibidoservlet extends HttpServlet {
                     // Manejar la excepción, por ejemplo, registrar en el registro de errores
                     e.printStackTrace();
                 }
+                
+                
+                // Configuración de las propiedades del correo
+                Properties props = new Properties();
+                props.put("mail.smtp.auth", "true");
+                props.put("mail.smtp.starttls.enable", "true");
+                props.put("mail.smtp.host", "smtp.gmail.com");
+                props.put("mail.smtp.port", "587");
+
+                // Dirección de correo y contraseña de aplicaciones en gmail
+                String correo = "gesdocsena2023@gmail.com";
+                String contrasena = "eerzwiqrbvyspdol";
+
+                // Crear una sesión de correo
+                Session session = Session.getInstance(props, new Authenticator() {
+                    @Override
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(correo, contrasena);
+                    }
+                });
+
+                try {
+                    // Crear un mensaje de correo
+                    Message mensaje = new MimeMessage(session);
+                    mensaje.setFrom(new InternetAddress(correo));
+
+                    // Direcciones de correo
+                    String Destinatario1 = (radCorreoFuncionarioDestinatario);
+//
+                    // Guardamos las direcciones a las que sera enviada el correo
+                    InternetAddress[] Correos = {
+                        new InternetAddress(Destinatario1)
+
+                    };
+                    mensaje.setRecipients(Message.RecipientType.TO, Correos);
+
+                    // asunto establecido
+                    String asuntoPredeterminado = "Se le ha asignado el radicado con número: " + radNumeroRadicado;
+                    mensaje.setSubject(asuntoPredeterminado);
+
+                    // mensaje establecido
+                    String mensajePredeterminado = "Hola "+radNombreDestinatario +",\n\n"+"Se te ha asignado un radicado para que le de respuestas según los tiempos establecidos";
+                    
+                    mensaje.setText(mensajePredeterminado);
+
+                    // Enviamos el mensaje
+                    Transport.send(mensaje);
+
+                } catch (MessagingException e) {
+
+                }
+
                 acceso = listar; // Puedes ajustar esto según tus necesidades
 
                 response.sendRedirect(acceso);
-                
-                {
-                }
+
             }
 
         }
+
     }
+
 }
