@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function () {
   const camposBloqueados = ['nombre_entidad', 'ciudad', 'tipo_documental', 'dependencia', 'nombre_funcionario'];
   const campoNumerico = 'anexos';

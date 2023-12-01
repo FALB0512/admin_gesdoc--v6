@@ -41,10 +41,6 @@
         <servlet-class>com.gesdoc.servlet.otrosservlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>RegistarPDF</servlet-name>
-        <servlet-class>com.gesdoc.servlet.RegistarPDF</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>EditarEnviadoServlet</servlet-name>
         <servlet-class>com.gesdoc.servlet.EditarEnviadoServlet</servlet-class>
     </servlet>
@@ -111,10 +107,6 @@
     <servlet-mapping>
         <servlet-name>otrosservlet</servlet-name>
         <url-pattern>/otrosservlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>RegistarPDF</servlet-name>
-        <url-pattern>/RegistarPDF</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>EditarEnviadoServlet</servlet-name>

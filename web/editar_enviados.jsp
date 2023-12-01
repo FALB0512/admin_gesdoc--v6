@@ -344,9 +344,8 @@
         </div>
     </div>
     
-    <script src="js/RegistrarEnviados.js" type="text/javascript"></script>
-    <script src="js/alertas_enviado.js" type="text/javascript"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/alertas_editarenviados.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <script>
         // Función para obtener el año actual
