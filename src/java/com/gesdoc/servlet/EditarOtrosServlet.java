@@ -88,7 +88,7 @@ public class EditarOtrosServlet extends HttpServlet {
 
             }else if (action.equalsIgnoreCase("Actualizar")) {
             acceso = editar_radicado;
-                System.out.println("Entro a actualizar");
+                System.out.println("Entro a ");
             String otrId = request.getParameter("otrId");
             String otrFechaRecibido = request.getParameter("fecha_recepcion");
             String otrNombreRemitente = request.getParameter("nombre_entidad");
@@ -110,7 +110,6 @@ public class EditarOtrosServlet extends HttpServlet {
             otrosradicados. setOtrDependencias(otrDependencias);
         
             daootros.actualizarOtros(otrosradicados);
-            
             try {
                     LocalDate fechaActual = LocalDate.now();
                     DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -129,7 +128,7 @@ public class EditarOtrosServlet extends HttpServlet {
                     seguimiento.setAccFechaIngreso(accFechaIngreso1);
                     seguimiento.setAccHoraIngreso(accHoraIngreso2);
                     seguimiento.setAccIP(accIP3);
-                    seguimiento.setAccAcciones("El usuario editò un registro en otros");
+                    seguimiento.setAccAcciones("El usuario editó en otros");
                     seguimiento.setAccUsuario(nom);
                     seguimiento.setAccNumeroRadicado(otrNumeroRadicado);
 
@@ -141,9 +140,11 @@ public class EditarOtrosServlet extends HttpServlet {
                 }
                 acceso = listar; // Puedes ajustar esto según tus necesidades
             
+            acceso = listar; // Puedes ajustar esto según tus necesidades
+            
             }
             RequestDispatcher vista = request.getRequestDispatcher(acceso);
-      vista.forward(request, response);   
+        vista.forward(request, response);
     }
 
     /**
