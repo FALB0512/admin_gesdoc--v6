@@ -72,7 +72,7 @@ public class LoginController extends HttpServlet {
                 seguimiento.setAccFechaIngreso(accFechaIngreso1);
                 seguimiento.setAccHoraIngreso(accHoraIngreso2);
                 seguimiento.setAccIP(accIP3);
-                seguimiento.setAccAcciones("el usuario ingreso al sistema");
+                seguimiento.setAccAcciones("El usuario ingreso al sistema");
                 seguimiento.setAccUsuario(nom);
                 seguimiento.setAccNumeroRadicado("No");
 

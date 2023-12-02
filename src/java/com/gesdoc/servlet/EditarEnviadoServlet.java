@@ -33,7 +33,7 @@ public class EditarEnviadoServlet extends HttpServlet {
     radicadoenviado enviado = new radicadoenviado();
     CrudRadicadoEnviadoDAO daoenviado = new CrudRadicadoEnviadoDAO();
     int id;
-    
+
     ConsultarSeguimientoUsuarios seguimiento = new ConsultarSeguimientoUsuarios();
     CrudSeguimientoUsuariosDAO daoseguimiento = new CrudSeguimientoUsuariosDAO();
     String accFechaIngreso1;
@@ -78,7 +78,7 @@ public class EditarEnviadoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String acceso = "";
+        String acceso = "listar_enviados.jsp";
         String action = request.getParameter("accion");
 
         if (action.equalsIgnoreCase("listar")) {
@@ -119,65 +119,38 @@ public class EditarEnviadoServlet extends HttpServlet {
             enviado.setEnvObservaciones(envObservaciones);
 
             daoenviado.actualizar(enviado);
-            
-            
+
             try {
-                    LocalDate fechaActual = LocalDate.now();
-                    DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                    String accFechaIngreso1 = fechaActual.format(formatoFecha);
+                LocalDate fechaActual = LocalDate.now();
+                DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                String accFechaIngreso1 = fechaActual.format(formatoFecha);
 
-                    // Obtener la hora de ingreso (en este ejemplo, se usa la hora actual del sistema)
-                    String accHoraIngreso2 = new SimpleDateFormat("HH:mm:ss").format(new Date());
+                // Obtener la hora de ingreso (en este ejemplo, se usa la hora actual del sistema)
+                String accHoraIngreso2 = new SimpleDateFormat("HH:mm:ss").format(new Date());
 
-                    // Obtener la dirección IP del cliente
-                    accIP3 = InetAddress.getLocalHost().getHostAddress();
+                // Obtener la dirección IP del cliente
+                accIP3 = InetAddress.getLocalHost().getHostAddress();
 
-                    HttpSession session = request.getSession();
-                    String nom = (String) session.getAttribute("nom");
+                HttpSession session = request.getSession();
+                String nom = (String) session.getAttribute("nom");
 
-                    // Configurar el objeto de seguimiento
-                    seguimiento.setAccFechaIngreso(accFechaIngreso1);
-                    seguimiento.setAccHoraIngreso(accHoraIngreso2);
-                    seguimiento.setAccIP(accIP3);
-                    seguimiento.setAccAcciones("El usuario editò un registro en enviados");
-                    seguimiento.setAccUsuario(nom);
-                    seguimiento.setAccNumeroRadicado(envNumeroRadicado);
+                seguimiento.setAccFechaIngreso(accFechaIngreso1);
+                seguimiento.setAccHoraIngreso(accHoraIngreso2);
+                seguimiento.setAccIP(accIP3);
+                seguimiento.setAccAcciones("El usuario editó un registro en enviados");
+                seguimiento.setAccUsuario(nom);
+                seguimiento.setAccNumeroRadicado(envNumeroRadicado);
 
-                    // Agregar seguimiento a la base de datos
-                    daoseguimiento.agregar(seguimiento);
-                } catch (Exception e) {
-                    // Manejar la excepción, por ejemplo, registrar en el registro de errores
-                    e.printStackTrace();
-                }
-                acceso = listar; // Puedes ajustar esto según tus necesidades
-
+                // Agregar seguimiento a la base de datos
+                daoseguimiento.agregar(seguimiento);
+            } catch (Exception e) {
+                // Manejar la excepción, por ejemplo, registrar en el registro de errores
+                e.printStackTrace();
+            }
         }
+
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);
+
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }
