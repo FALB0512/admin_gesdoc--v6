@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
         'asunto',
         'NombreFuncionario',
         'TipoDocumental',
+        'Antecedentes',
         'Entidad',
         'ciudad',
         'nombre_destinatario',
