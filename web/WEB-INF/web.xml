@@ -60,6 +60,18 @@
         <servlet-name>EditarUsuariosServlet</servlet-name>
         <servlet-class>com.gesdoc.servlet.EditarUsuariosServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>seguimiento_editarotros</servlet-name>
+        <servlet-class>com.gesdoc.servlet.seguimiento_editarotros</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>seguimiento_editarrecibidos</servlet-name>
+        <servlet-class>com.gesdoc.servlet.seguimiento_editarrecibidos</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>seguimiento_editarenviados</servlet-name>
+        <servlet-class>com.gesdoc.servlet.seguimiento_editarenviados</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AdminGesdoc</servlet-name>
         <url-pattern>/AdminGesdoc</url-pattern>
@@ -127,6 +139,18 @@
     <servlet-mapping>
         <servlet-name>EditarUsuariosServlet</servlet-name>
         <url-pattern>/EditarUsuariosServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>seguimiento_editarotros</servlet-name>
+        <url-pattern>/seguimiento_editarotros</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>seguimiento_editarrecibidos</servlet-name>
+        <url-pattern>/seguimiento_editarrecibidos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>seguimiento_editarenviados</servlet-name>
+        <url-pattern>/seguimiento_editarenviados</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

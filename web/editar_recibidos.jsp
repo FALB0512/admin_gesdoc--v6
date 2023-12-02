@@ -266,18 +266,18 @@
                                                                     <input type="text" name="id" class="form-control" id="id" value="<%= p.getRadId()%>" required readonly>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label for="numeroRadicado">Numero de Radicado<span class="form-required">*</span></label>
-                                                                    <input type="text"  name="numero_radicado" class="form-control" id="numeroRadicado" name="numeroRadicado" required value="<%= p.getRadNumeroRadicado()%>" >
+                                                                    <label for="numero_radicado">Numero de Radicado<span class="form-required">*</span></label>
+                                                                    <input type="text"  name="numero_radicado" class="form-control" id="numero_radicado" required value="<%= p.getRadNumeroRadicado()%>" readonly>
                                                                 </div>
 
                                                                 <div class="form-group">
-                                                                    <label for="dependencia">Nombre Entidad o Persona<span class="form-required">*</span></label>
-                                                                    <input type="text" name="nombre_entidad" class="form-control" id="dependencia" name="dependencia" required value="<%= p.getRadNombreEntidadPersona()%>">
+                                                                    <label for="nombre_entidad">Nombre Entidad o Persona<span class="form-required">*</span></label>
+                                                                    <input type="text" name="nombre_entidad" class="form-control" id="nombre_entidad"  required value="<%= p.getRadNombreEntidadPersona()%>">
                                                                 </div>
 
                                                                 <div class="form-group">
-                                                                    <label for="dependencia">Radicado Origen<span class="form-required">*</span></label>
-                                                                    <input type="text" name="numero_origen" class="form-control" id="dependencia" name="dependencia" required value="<%= p.getRadRadicadoOrigen()%>">
+                                                                    <label for="numero_origen">Radicado Origen<span class="form-required">*</span></label>
+                                                                    <input type="text" name="numero_origen" class="form-control" id="numero_origen" required value="<%= p.getRadRadicadoOrigen()%>">
                                                                 </div>
 
                                                             </div>
@@ -285,18 +285,18 @@
                                                             <div class="col-md-6" >
 
                                                                 <div class="form-group" >
-                                                                    <label for="fechaRadicacion">Fecha de Recepción<span class="form-required">*</span></label>
-                                                                    <input type="date" name="fecha_recepcion" class="form-control" id="fechaRadicacion" name="fechaRadicacion" required value="<%= p.getRadFechaRecepcion()%>">
+                                                                    <label for="fecha_recepcion">Fecha de Recepción<span class="form-required">*</span></label>
+                                                                    <input type="date" name="fecha_recepcion" class="form-control" id="fecha_recepcion" required value="<%= p.getRadFechaRecepcion()%>">
                                                                 </div>
 
                                                                 <div class="form-group">
-                                                                    <label for="dependencia">Asunto<span class="form-required">*</span></label>
-                                                                    <input type="text" name="asunto" class="form-control" id="dependencia" name="dependencia" required value="<%= p.getRadAsunto()%>">
+                                                                    <label for="asunto">Asunto<span class="form-required">*</span></label>
+                                                                    <input type="text" name="asunto" class="form-control" id="asunto" required value="<%= p.getRadAsunto()%>">
                                                                 </div>
 
                                                                 <div class="form-group">
-                                                                    <label for="fechaRadicacion">Fecha del Documento<span class="form-required">*</span></label>
-                                                                    <input type="date" name="fecha_creacion" class="form-control" id="fechaRadicacion" name="fechaRadicacion" required value="<%= p.getRadFechaCreacionDocumento()%>">
+                                                                    <label for="fecha_creacion">Fecha del Documento<span class="form-required">*</span></label>
+                                                                    <input type="date" name="fecha_creacion" class="form-control" id="fecha_creacion" required value="<%= p.getRadFechaCreacionDocumento()%>">
                                                                 </div>
 
                                                             </div>
@@ -304,8 +304,8 @@
                                                             <div class="col-md-6">
                                                                 <!-- Datos del remitente -->
                                                                 <div class="form-group">
-                                                                    <label for="numeroRadicado">Anexos<span class="form-required">*</span></label>
-                                                                    <input type="text" name="anexos" class="form-control" id="numeroRadicado" name="numeroRadicado" required value="<%= p.getRadAnexos()%>">
+                                                                    <label for="anexos">Anexos<span class="form-required">*</span></label>
+                                                                    <input type="text" name="anexos" class="form-control" id="anexos" required value="<%= p.getRadAnexos()%>">
                                                                 </div>
 
                                                             </div>                                                                                               
@@ -314,8 +314,8 @@
                                                             <div class="col-md-6">
 
                                                                 <div class="form-group">
-                                                                    <label for="numeroRadicado">Ciudad de Origen<span class="form-required">*</span></label>
-                                                                    <input type="text" name="ciudad" class="form-control" id="numeroRadicado" name="numeroRadicado" required value="<%= p.getRadCiudad()%>">
+                                                                    <label for="ciudad">Ciudad de Origen<span class="form-required">*</span></label>
+                                                                    <input type="text" name="ciudad" class="form-control" id="ciudad" required value="<%= p.getRadCiudad()%>">
                                                                 </div>    
 
                                                             </div>
@@ -329,8 +329,8 @@
 
 
                                                                 <div class="form-group">
-                                                                    <label for="dependencia">Dependencia<span class="form-required">*</span></label>
-                                                                    <input type="text" name="Dependencia" class="form-control" id="dependencia" name="dependencia" required value="<%= p.getRadDependencias()%>" >
+                                                                    <label for="Dependencia">Dependencia<span class="form-required">*</span></label>
+                                                                    <input type="text" name="Dependencia" class="form-control" id="Dependencia" required value="<%= p.getRadDependencias()%>" >
                                                                 </div>                                                    
 
                                                             </div>
@@ -339,8 +339,8 @@
                                                             <div class="col-md-6">
 
                                                                 <div class="form-group">
-                                                                    <label for="dependencia">Nombre Funcionario Responsable<span class="form-required">*</span></label>
-                                                                    <input type="text" name="nombre_destinatario" class="form-control" id="dependencia" name="dependencia" required value="<%= p.getRadNombreDestinatario()%>">
+                                                                    <label for="nombre_destinatario">Nombre Funcionario Responsable<span class="form-required">*</span></label>
+                                                                    <input type="text" name="nombre_destinatario" class="form-control" id="nombre_destinatario" required value="<%= p.getRadNombreDestinatario()%>">
                                                                 </div>                                                    
 
                                                             </div>
@@ -354,8 +354,8 @@
 
 
                                                                 <div class="form-group">
-                                                                    <label for="dependencia" style="">Numero de Radicado<span class="form-required">*</span></label>
-                                                                    <input type="text" name="NumeroRadRespuesta" class="form-control" id="dependencia" name="dependencia" required value="<%= p.getRadNumeroRadRespuesta()%>">
+                                                                    <label for="NumeroRadRespuesta" style="">Numero de Radicado<span class="form-required">*</span></label>
+                                                                    <input type="text" name="NumeroRadRespuesta" class="form-control" id="NumeroRadRespuesta" required value="<%= p.getRadNumeroRadRespuesta()%>">
                                                                 </div>                                                    
 
                                                             </div>
@@ -364,8 +364,8 @@
                                                             <div class="col-md-6">
 
                                                                 <div class="form-group">
-                                                                    <label for="fechaRadicacion">Fecha del Documento<span class="form-required">*</span></label>
-                                                                    <input type="date" name="fecha_respuesta" class="form-control" id="fechaRadicacion" name="fechaRadicacion" required value="<%= p.getRadFechaRespuesta()%>">
+                                                                    <label for="fecha_respuesta">Fecha del Documento<span class="form-required">*</span></label>
+                                                                    <input type="date" name="fecha_respuesta" class="form-control" id="fecha_respuesta" required value="<%= p.getRadFechaRespuesta()%>">
                                                                 </div>                                                 
 
                                                             </div>
