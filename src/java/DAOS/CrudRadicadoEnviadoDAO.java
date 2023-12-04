@@ -122,40 +122,42 @@ public class CrudRadicadoEnviadoDAO {
         }
     }
     
-    public boolean actualizar (radicadoenviado env){
+public boolean actualizar(radicadoenviado env) {
     String sql = "call gesdoc_sena.sp_ActualizarRadicadoEnvio(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
+    try {
+        con = cn.getConection();
+        ps = con.prepareCall(sql);
 
-        try {
-            con = cn.getConection();
-            ps = con.prepareCall(sql);
+        // Asigna los valores reales a los parámetros del procedimiento almacenado  
+        ps.setInt(1, env.getEnvId());
+        ps.setString(2, env.getEnvNumeroRadicado());
+        ps.setString(3, env.getEnvFechaRadicacion());
+        ps.setString(4, env.getEnvDependencia());
+        ps.setString(5, env.getEnvNombreFuncionario());
+        ps.setString(6, env.getEnvAsunto());
+        ps.setInt(7, env.getEnvAnexos());
+        ps.setString(8, env.getEnvAntecedentes());
+        ps.setString(9, env.getEnvEntidadDestino());
+        ps.setString(10, env.getEnvNombreDestinatario());
+        ps.setString(11, env.getEnvCiudad());
+        ps.setString(12, env.getEnvTipoDocumental());
+        ps.setString(13, env.getEnvObservaciones());
 
-            // Asigna los valores reales a los parámetros del procedimiento almacenado  
-            ps.setInt(1, env.getEnvId());
-            ps.setString(2, env.getEnvNumeroRadicado());
-            ps.setString(3, env.getEnvFechaRadicacion());
-            ps.setString(4, env.getEnvDependencia());
-            ps.setString(5, env.getEnvNombreFuncionario());
-            ps.setString(6, env.getEnvAsunto());
-            ps.setInt(7, env.getEnvAnexos());
-            ps.setString(8, env.getEnvAntecedentes());
-            ps.setString(9, env.getEnvEntidadDestino());
-            ps.setString(10, env.getEnvNombreDestinatario());
-            ps.setString(11, env.getEnvCiudad());
-            ps.setString(12, env.getEnvTipoDocumental());
-            ps.setString(13, env.getEnvObservaciones());
+        // Obtiene el número de filas afectadas por la actualización
+        int rowsAffected = ps.executeUpdate();
 
-            // Ejecuta el procedimiento almacenado
-            ps.execute();
-
-            return true; // Indica que la operación fue exitosa
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            return false; // Indica que la operación falló
-        }
-    
-        
+        return rowsAffected > 0; // Indica si la operación tuvo impacto en alguna fila
+    } catch (SQLException e) {
+        System.out.println(e.getMessage());
+        return false; // Indica que la operación falló
+    } finally {
+        // Asegúrate de cerrar la conexión y recursos relacionados
+        // Esto es importante para prevenir problemas de memoria o conexiones abiertas
+        // Coloca aquí tus sentencias para cerrar las conexiones
     }
+}
+
     
     public boolean eliminar(int envId) {
         String sql = "CALL gesdoc_sena.sp_EliminarRadicadoEnvId(?)";
@@ -175,6 +177,13 @@ public class CrudRadicadoEnviadoDAO {
         }
 }
 
+    public radicadoenviado obtenerPorId(int parseInt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
+    
+
+
+   
     
 }
