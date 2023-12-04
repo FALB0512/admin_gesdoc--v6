@@ -108,6 +108,7 @@
         
         
          <form class="jotform-form" action="EditarOtrosServlet" method="get" enctype="multipart/form-data"/>
+         
       
             <div id="layoutSidenav">
                 <div id="layoutSidenav_nav">
@@ -235,7 +236,7 @@
 
                                                 <div class="form-group" style="">
                                                     <label for="numeroRadicado">Numero de Radicado<span class="form-required">*</span></label>
-                                                    <input type="text"  name="numero_radicado" class="form-control" id="numeroRadicado" stylename="numeroRadicado"  value="<%= p.getOtrNumeroRadicado()%>" required >
+                                                    <input type="text"  name="numero_radicado" class="form-control" id="numeroRadicado" stylename="numeroRadicado"  value="<%= p.getOtrNumeroRadicado()%>" required readonly>
 
                                                 </div>
                                                 <div class="form-group">
@@ -308,6 +309,8 @@
 
                                         <div class="text-center" style="padding: 10px;">
                                         <button type="submit" class="btn btn-success" name="accion" value="Actualizar" >Actualizar</button>
+                                       
+
 
                                     </div>
 
@@ -319,6 +322,8 @@
 
         </div>
     </div>
+<script src="js/alertas_editarotros.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <script>
         // Función para obtener el año actual

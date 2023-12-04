@@ -1,14 +1,6 @@
+
 document.addEventListener('DOMContentLoaded', function () {
-  const camposBloqueados = ['Dependencia',
-        'asunto',
-        'NombreFuncionario',
-        'TipoDocumental',
-        'Antecedentes',
-        'Entidad',
-        'ciudad',
-        'nombre_destinatario',
-        'Observaciones'];
-    
+  const camposBloqueados = ['nombre_entidad', 'ciudad', 'tipo_documental', 'dependencia', 'nombre_funcionario'];
   const campoNumerico = 'anexos';
 
   camposBloqueados.forEach(campo => {

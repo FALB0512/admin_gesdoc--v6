@@ -10,11 +10,6 @@ import Modelo.ConsultarSeguimientoUsuarios;
 import Modelo.otrosradicados;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.InetAddress;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -78,17 +73,16 @@ public class EditarOtrosServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         String acceso = "";
-            String action = request.getParameter("accion");
- 
-            if (action.equalsIgnoreCase("listar")) {
-            acceso = listar;
-             }else if (action.equalsIgnoreCase("editar")) {
-            request.setAttribute("otrId", request.getParameter("id"));
-            acceso = editar_radicado;
+        String action = request.getParameter("accion");
 
-            }else if (action.equalsIgnoreCase("Actualizar")) {
-            acceso = editar_radicado;
-                System.out.println("Entro a actualizar");
+        if (action.equalsIgnoreCase("listar")) {
+            acceso = listar; // Ajusta la URL según tu estructura
+        } else if (action.equalsIgnoreCase("editar")) {
+            request.setAttribute("otrId", request.getParameter("id"));
+            acceso = editar_radicado; // Ajusta la URL según tu estructura
+        } else if (action.equalsIgnoreCase("Actualizar")) {
+            try {
+          
             String otrId = request.getParameter("otrId");
             String otrFechaRecibido = request.getParameter("fecha_recepcion");
             String otrNombreRemitente = request.getParameter("nombre_entidad");
@@ -111,40 +105,24 @@ public class EditarOtrosServlet extends HttpServlet {
         
             daootros.actualizarOtros(otrosradicados);
             
-            try {
-                    LocalDate fechaActual = LocalDate.now();
-                    DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                    String accFechaIngreso1 = fechaActual.format(formatoFecha);
+            acceso = listar; // Puedes ajustar esto según tus necesidades
+            HttpSession session = request.getSession();
+                session.setAttribute("otrNumeroRadicado", otrNumeroRadicado);
 
-                    // Obtener la hora de ingreso (en este ejemplo, se usa la hora actual del sistema)
-                    String accHoraIngreso2 = new SimpleDateFormat("HH:mm:ss").format(new Date());
+                // Redirige al segundo servlet
+                response.sendRedirect("seguimiento_editarotros"); // Ajusta la URL según tu estructura
 
-                    // Obtener la dirección IP del cliente
-                    accIP3 = InetAddress.getLocalHost().getHostAddress();
+                return; // Importante agregar esto para evitar que se ejecute el resto del código
 
-                    HttpSession session = request.getSession();
-                    String nom = (String) session.getAttribute("nom");
-
-                    // Configurar el objeto de seguimiento
-                    seguimiento.setAccFechaIngreso(accFechaIngreso1);
-                    seguimiento.setAccHoraIngreso(accHoraIngreso2);
-                    seguimiento.setAccIP(accIP3);
-                    seguimiento.setAccAcciones("El usuario editò un registro en otros");
-                    seguimiento.setAccUsuario(nom);
-                    seguimiento.setAccNumeroRadicado(otrNumeroRadicado);
-
-                    // Agregar seguimiento a la base de datos
-                    daoseguimiento.agregar(seguimiento);
-                } catch (Exception e) {
-                    // Manejar la excepción, por ejemplo, registrar en el registro de errores
-                    e.printStackTrace();
-                }
-                acceso = listar; // Puedes ajustar esto según tus necesidades
-            
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            RequestDispatcher vista = request.getRequestDispatcher(acceso);
-      vista.forward(request, response);   
+        }
+
+        RequestDispatcher vista = request.getRequestDispatcher(acceso);
+        vista.forward(request, response);
     }
+
 
     /**
      * Handles the HTTP <code>POST</code> method.

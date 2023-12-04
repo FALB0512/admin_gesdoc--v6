@@ -231,12 +231,12 @@
 
                                                 <div class="form-group" style="">
                                                     <label for="numero_radicado">Numero de Radicado<span class="form-required">*</span></label>
-                                                    <input type="text"  name="numero_radicado" class="form-control" id="numeroRadicado" stylename="numeroRadicado" value="<%= p.getEnvNumeroRadicado()%>" required >
+                                                    <input type="text"  name="numero_radicado" class="form-control" id="numero_radicado" stylename="numero_radicado" value="<%= p.getEnvNumeroRadicado()%>" required readonly>
 
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="Dependencia">Dependencia<span class="form-required">*</span></label>
-                                                    <input type="text" name="Dependencia" class="form-control" id="dependencia" value="<%= p.getEnvDependencia()%>" required>
+                                                    <input type="text" name="Dependencia" class="form-control" id="Dependencia" value="<%= p.getEnvDependencia()%>" required>
                                                 </div>
 
                                                 <div class="form-group">
@@ -342,11 +342,9 @@
             </main>
 
         </div>
-    </div>
-    
-    <script src="js/RegistrarEnviados.js" type="text/javascript"></script>
-    <script src="js/alertas_enviado.js" type="text/javascript"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </div>  
+<script src="js/alertas_editarenviados.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <script>
         // Función para obtener el año actual
