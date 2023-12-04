@@ -118,7 +118,9 @@ public class EnviadosServlet extends HttpServlet {
         String action = request.getParameter("accion");
 
         if (action.equalsIgnoreCase("Insertar")) {
-            String path_project = "C:\\Users\\jorge\\OneDrive\\Documentos\\GitHub\\admin_gesdoc--v6\\web\\Arc_PDF\\";  // Ruta donde se guardarán los archivos PDF
+
+            String path_project = "C:\\Users\\farud\\Desktop\\admin_gesdoc--v4-master\\web\\Arc_Env\\";  // Ruta donde se guardarán los archivos PDF
+
 
             Part filePart = request.getPart("file");
             String fileName = filePart.getSubmittedFileName();
@@ -141,7 +143,7 @@ public class EnviadosServlet extends HttpServlet {
 
                 filePart.write(path_project + fileName_w);
 
-                String link = "Arc_PDF/" + fileName_w;  // Ruta relativa a la carpeta web de tu proyecto
+                String link = "Arc_Env/" + fileName_w;  // Ruta relativa a la carpeta web de tu proyecto
 
                 String envNumeroRadicado = request.getParameter("numero_radicado");
                 String envFechaRadicacion = request.getParameter("fecha_recepcion");

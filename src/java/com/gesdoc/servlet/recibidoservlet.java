@@ -5,6 +5,7 @@
 package com.gesdoc.servlet;
 
 import DAOS.CrudRadicadoRecibidoDAO;
+import DAOS.CrudRadicadoRecibidoDAO;
 import DAOS.CrudSeguimientoUsuariosDAO;
 import Modelo.ConsultarSeguimientoUsuarios;
 import Modelo.radicadorecibido;
@@ -16,6 +17,15 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Properties;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
@@ -121,7 +131,15 @@ public class recibidoservlet extends HttpServlet {
             System.out.println("entro a registrar");
             acceso = agregarrecibido;
             
+
+            String path_project = "C:\\Users\\farud\\Desktop\\admin_gesdoc--v4-master\\web\\Arc_Rec\\";  // Ruta donde se guardarán los archivos PDF
+
+
+            String path_project = "C:\\Users\\ADSO\\Documents\\GitHub\\admin_gesdoc--v6\\web\\Arc_PDF\\";  // Ruta donde se guardarán los archivos PDF
+
             String path_project = "C:\\Users\\ADSO\\Documents\\GitHub\\admin_gesdoc--v6\\web\\Arc_Rec\\";  // Ruta donde se guardarán los archivos PDF
+
+
 
             Part filePart = request.getPart("file");
             String fileName = filePart.getSubmittedFileName();
@@ -144,7 +162,7 @@ public class recibidoservlet extends HttpServlet {
 
                 filePart.write(path_project + fileName_w);
 
-                String link = "Rec_PDF/" + fileName_w;  // Ruta relativa a la carpeta web de tu proyecto
+                String link = "Arc_Rec/" + fileName_w;  // Ruta relativa a la carpeta web de tu proyecto
 
                 String radNumeroRadicado = request.getParameter("numero_radicado");
                 String radFechaRespuesta = request.getParameter("fecha_respuesta");
@@ -158,6 +176,7 @@ public class recibidoservlet extends HttpServlet {
                 String radNumeroRadRespuesta = request.getParameter("NumeroRadRespuesta");
                 String radDependencias = request.getParameter("Dependencia");
                 String radNombreDestinatario = request.getParameter("nombre_destinatario");
+                String radCorreoFuncionarioDestinatario = request.getParameter("Correo_Funcionario_Destinatario");
 
                 radicadorecibido.setRadNumeroRadicado(radNumeroRadicado);
                 radicadorecibido.setRadFechaRespuesta(radFechaRespuesta);
@@ -172,6 +191,7 @@ public class recibidoservlet extends HttpServlet {
                 radicadorecibido.setRadDependencias(radDependencias);
                 radicadorecibido.setRadNombreDestinatario(radNombreDestinatario);
                 radicadorecibido.setRadArchivoPdf(link);
+                radicadorecibido.setRadCorreoFuncionarioDestinatario(radCorreoFuncionarioDestinatario);
 
                 daorecibido.agregarrecibido(radicadorecibido);
                 
@@ -203,14 +223,106 @@ public class recibidoservlet extends HttpServlet {
                     // Manejar la excepción, por ejemplo, registrar en el registro de errores
                     e.printStackTrace();
                 }
+                
+                
+                // Configuración de las propiedades del correo
+                Properties props = new Properties();
+                props.put("mail.smtp.auth", "true");
+                props.put("mail.smtp.starttls.enable", "true");
+                props.put("mail.smtp.host", "smtp.gmail.com");
+                props.put("mail.smtp.port", "587");
+
+                // Dirección de correo y contraseña de aplicaciones en gmail
+                String correo = "gesdocsena2023@gmail.com";
+                String contrasena = "eerzwiqrbvyspdol";
+
+                // Crear una sesión de correo
+                Session session = Session.getInstance(props, new Authenticator() {
+                    @Override
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(correo, contrasena);
+                    }
+                });
+
+                try {
+                    // Crear un mensaje de correo
+                    Message mensaje = new MimeMessage(session);
+                    mensaje.setFrom(new InternetAddress(correo));
+
+                    // Direcciones de correo
+                    String Destinatario1 = (radCorreoFuncionarioDestinatario);
+//
+                    // Guardamos la dirección
+                    InternetAddress[] Correos = {
+                        new InternetAddress(Destinatario1)
+
+                    };
+                    mensaje.setRecipients(Message.RecipientType.TO, Correos);
+
+                    // asunto establecido
+                    String asuntoPredeterminado = "Se le ha asignado el radicado con número: " + radNumeroRadicado;
+                    mensaje.setSubject(asuntoPredeterminado);
+
+                    // mensaje establecido
+                    String mensajePredeterminado = "Hola "+radNombreDestinatario +",\n\n"+"Se te ha asignado un radicado para que le de respuestas según los tiempos establecidos";
+                    
+                    mensaje.setText(mensajePredeterminado);
+
+                    // Enviamos el mensaje
+                    Transport.send(mensaje);
+
+                } catch (MessagingException e) {
+
+                }
+                
+                
+                  try {
+                CrudRadicadoRecibidoDAO dao = new CrudRadicadoRecibidoDAO();
+
+                Message message = new MimeMessage(session);
+                message.setFrom(new InternetAddress(correo));
+
+                String destino = dao.obtenerCorreo(contrasena);
+
+                if (destino != null) {
+                    InternetAddress[] correos = {
+                        new InternetAddress(destino)
+                    };
+                    
+                    
+
+                    // Crear mensaje de correo
+                   
+                    String cuerpoMensaje = "Has asignado un nuevo radicado ";
+
+                    message.setRecipients(Message.RecipientType.TO, correos);
+                    message.setSubject("Inicio de Sesión Exitoso");
+                    message.setText(cuerpoMensaje);
+
+                    // Enviar el mensaje
+                    Transport.send(message);
+
+                    System.out.println("Correo electrónico enviado con éxito.");
+                } else {
+                    System.err.println("La dirección de correo electrónico de destino es nula. No se puede enviar el correo.");
+                }
+
+            } catch (MessagingException e) {
+                System.err.println("Error al enviar el correo electrónico: " + e.getMessage());
+                // Manejar la excepción adecuadamente, según tus necesidades.
+            }
+
+
+
                 acceso = listar; // Puedes ajustar esto según tus necesidades
 
                 response.sendRedirect(acceso);
-                
-                {
-                }
+
             }
 
+            
         }
+
     }
+
 }
