@@ -245,7 +245,7 @@ public class recibidoservlet extends HttpServlet {
                     // Direcciones de correo
                     String Destinatario1 = (radCorreoFuncionarioDestinatario);
 //
-                    // Guardamos las direcciones a las que sera enviada el correo
+                    // Guardamos la dirección
                     InternetAddress[] Correos = {
                         new InternetAddress(Destinatario1)
 
@@ -281,6 +281,8 @@ public class recibidoservlet extends HttpServlet {
                     InternetAddress[] correos = {
                         new InternetAddress(destino)
                     };
+                    
+                    
 
                     // Crear mensaje de correo
                    
