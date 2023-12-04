@@ -322,6 +322,14 @@
                                                     </div>                                                    
 
                                                 </div>
+                                                <div class="col-md-6">
+
+                                                    <div class="form-group">
+                                                        <label for="nombre_destinatario">Correo Electronico<span class="form-required">*</span></label>
+                                                        <input type="mail" name="Correo_Funcionario_Destinatario" class="form-control" id="Correo_Funcionario_Destinatario" required maxlength="50">
+                                                    </div>                                                    
+
+                                                </div>
 
                                                 <div>
                                                     <h1 class="titulos" style="font-size: 20px;

@@ -23,11 +23,12 @@ public class radicadorecibido {
     String radDependencias;
     String radNombreDestinatario;
     String radArchivoPdf;
+    String radCorreoFuncionarioDestinatario;
 
     public radicadorecibido() {
     }
 
-    public radicadorecibido(int radId, String radNumeroRadicado, String radFechaRespuesta, String radFechaRecepcion, String radNombreEntidadPersona, String radAsunto, String radRadicadoOrigen, String radFechaCreacionDocumento, int radAnexos, String radCiudad, String radNumeroRadRespuesta, String radDependencias, String radNombreDestinatario, String radArchivoPdf) {
+    public radicadorecibido(int radId, String radNumeroRadicado, String radFechaRespuesta, String radFechaRecepcion, String radNombreEntidadPersona, String radAsunto, String radRadicadoOrigen, String radFechaCreacionDocumento, int radAnexos, String radCiudad, String radNumeroRadRespuesta, String radDependencias, String radNombreDestinatario, String radArchivoPdf, String radCorreoFuncionarioDestinatario) {
         this.radId = radId;
         this.radNumeroRadicado = radNumeroRadicado;
         this.radFechaRespuesta = radFechaRespuesta;
@@ -42,6 +43,7 @@ public class radicadorecibido {
         this.radDependencias = radDependencias;
         this.radNombreDestinatario = radNombreDestinatario;
         this.radArchivoPdf = radArchivoPdf;
+        this.radCorreoFuncionarioDestinatario = radCorreoFuncionarioDestinatario;
     }
 
     public int getRadId() {
@@ -156,10 +158,15 @@ public class radicadorecibido {
         this.radArchivoPdf = radArchivoPdf;
     }
 
+    public String getRadCorreoFuncionarioDestinatario() {
+        return radCorreoFuncionarioDestinatario;
+    }
+
+    public void setRadCorreoFuncionarioDestinatario(String radCorreoFuncionarioDestinatario) {
+        this.radCorreoFuncionarioDestinatario = radCorreoFuncionarioDestinatario;
+    }
+
+   
     
     
 }
-
-
-    
-
