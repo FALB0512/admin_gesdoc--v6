@@ -23,7 +23,7 @@
     <div>
         <object data="<%= pdfURL %>" type="application/pdf" width="100%" height="800">
             <!-- Puedes agregar un mensaje alternativo si el navegador no puede mostrar el PDF -->
-            <p>No se puede mostrar el PDF. <a href="<%= pdfURL %>">Descargar PDF</a></p>
+            <p>No se puede mostrar el PDF. <a href="<%= pdfURL %>"></a></p>
         </object>
     </div>
     
