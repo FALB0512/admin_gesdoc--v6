@@ -4,6 +4,10 @@
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <div id="layoutSidenav">
     <!--debo copiar linea 10-->
@@ -803,22 +807,9 @@
         </footer>
     </div>
              
-<script>
-    function cerrarSesion() {
-        // Realizar una solicitud al controlador para cerrar la sesión
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'LoginController', true);
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                // La solicitud fue exitosa, redirigir o realizar otras acciones según sea necesario
-                window.location.href = 'index.jsp'; // Redirigir a la página de inicio, por ejemplo
-            }
-        };
-
-        xhr.send();
-    }
-</script>
+<script src="js/cierre_automatico.js"></script>
+<script src="js/cerrarsesion.js"></script>
+<script src="js/recargarpagina.js"></script>
 
 
 

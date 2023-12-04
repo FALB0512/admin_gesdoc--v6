@@ -11,8 +11,10 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -359,22 +361,22 @@
                 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
                 <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
 
-                <!-- jQuery, Popper.js, Bootstrap JS -->
+                 jQuery, Popper.js, Bootstrap JS 
                 <script src="jquery/jquery-3.3.1.min.js"></script>
                 <script src="popper/popper.min.js"></script>
                 <script src="bootstrap/js/bootstrap.min.js"></script>
 
-                <!-- datatables JS -->
+                 datatables JS 
                 <script type="text/javascript" src="datatables/datatables.min.js"></script>    
 
-                <!-- para usar botones en datatables JS -->  
+                 para usar botones en datatables JS   
                 <script src="datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>  
                 <script src="datatables/JSZip-2.5.0/jszip.min.js"></script>    
                 <script src="datatables/pdfmake-0.1.36/pdfmake.min.js"></script>    
                 <script src="datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
                 <script src="datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
 
-                <!-- código JS propìo-->    
+                 código JS propìo    
                 <script type="text/javascript" src="main.js"></script>  
 
 
@@ -407,24 +409,6 @@
                         });
                     }
 </script>
-<script>
-    function cerrarSesion() {
-        // Realizar una solicitud al controlador para cerrar la sesión
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'LoginController', true);
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                // La solicitud fue exitosa, redirigir o realizar otras acciones según sea necesario
-                window.location.href = 'index.jsp'; // Redirigir a la página de inicio, por ejemplo
-            }
-        };
-
-        xhr.send();
-    }
-</script>
-
-
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
@@ -432,6 +416,8 @@
 <script src="js/scripts.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
 <script src="js/datatables-simple-demo.js"></script>
+<script src="js/cierre_automatico.js"></script>
+<script src="js/cerrarsesion.js"></script>
 </body>
 </html>
 <%

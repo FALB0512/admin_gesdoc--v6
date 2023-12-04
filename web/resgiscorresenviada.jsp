@@ -10,6 +10,9 @@
 <html lang="es">
     <head>
         <meta charset="utf-8" />
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/noty@3.1.4/dist/noty.css" />
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -267,7 +270,7 @@
 
                                                 <div class="form-group">
                                                     <label for="TipoDocumental">Tipo Documental<span class="form-required">*</span></label>
-                                                    <input type="text" name="TipoDocumental" class="form-control" id="TipoDocumental" required maxlength="45">
+                                                    <input type="text" name="TipoDocumental" class="form-control" id="TipoDocumental" required maxlength="45" >
                                                 </div>  
 
 
@@ -444,28 +447,14 @@
     resetCounterIfNeeded();
 
 </script>
-<script>
-    function cerrarSesion() {
-        // Realizar una solicitud al controlador para cerrar la sesión
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'LoginController', true);
 
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                // La solicitud fue exitosa, redirigir o realizar otras acciones según sea necesario
-                window.location.href = 'index.jsp'; // Redirigir a la página de inicio, por ejemplo
-            }
-        };
-
-        xhr.send();
-    }
-</script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="js/scripts.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
 <script src="js/datatables-simple-demo.js"></script>
-
+<script src="js/cierre_automatico.js"></script>
+<script src="js/cerrarsesion.js"></script>
 
 
 <%
