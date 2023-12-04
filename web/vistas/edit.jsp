@@ -312,6 +312,7 @@
                                                         </div>   
 
                                                         <input type="hidden" name="txtusuId" value="<%= p.getUsuId()%>">
+                                                        <input type="hidden" name="token" value="<%= session.getId() %>">
 
                                                         <div class="text-center">
                                                             <button type="submit" class="btn btn-success" name="accion" value="Actualizar">Actualizar</button>
@@ -335,6 +336,10 @@
 
             </div>
         </div>
+        
+        <script src="js/alertas_usario.js" type="text/javascript"></script>
+        <script src="js/alertas_editarusuarios.js" type="text/javascript"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
         <script>
             // Función para realizar la búsqueda en tiempo real

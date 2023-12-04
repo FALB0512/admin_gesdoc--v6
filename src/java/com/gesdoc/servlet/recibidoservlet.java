@@ -131,7 +131,11 @@ public class recibidoservlet extends HttpServlet {
             System.out.println("entro a registrar");
             acceso = agregarrecibido;
             
+
             String path_project = "C:\\Users\\ADSO\\Documents\\GitHub\\admin_gesdoc--v6\\web\\Arc_PDF\\";  // Ruta donde se guardarán los archivos PDF
+
+            String path_project = "C:\\Users\\ADSO\\Documents\\GitHub\\admin_gesdoc--v6\\web\\Arc_Rec\\";  // Ruta donde se guardarán los archivos PDF
+
 
             Part filePart = request.getPart("file");
             String fileName = filePart.getSubmittedFileName();
@@ -174,7 +178,6 @@ public class recibidoservlet extends HttpServlet {
                 radicadorecibido.setRadFechaRespuesta(radFechaRespuesta);
                 radicadorecibido.setRadFechaRecepcion(radFechaRecepcion);
                 radicadorecibido.setRadNombreEntidadPersona(radNombreEntidadPersona);
-                System.out.println(radNombreEntidadPersona);
                 radicadorecibido.setRadAsunto(radAsunto);
                 radicadorecibido.setRadRadicadoOrigen(radRadicadoOrigen);
                 radicadorecibido.setRadFechaCreacionDocumento(radFechaCreacionDocumento);
@@ -313,6 +316,7 @@ public class recibidoservlet extends HttpServlet {
 
             }
 
+            
         }
 
     }

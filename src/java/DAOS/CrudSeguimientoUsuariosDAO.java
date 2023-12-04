@@ -46,6 +46,8 @@ public class CrudSeguimientoUsuariosDAO {
                 accusu.setAccHoraIngreso(rs.getString("accHoraIngreso"));
                 accusu.setAccIP(rs.getString("accIP"));
                 accusu.setAccAcciones(rs.getString("accAcciones"));
+                accusu.setAccUsuario(rs.getString("accUsuario"));
+                accusu.setAccNumeroRadicado(rs.getString("accNumeroRadicado"));
                 
 
                 list.add(accusu);
@@ -71,6 +73,8 @@ public class CrudSeguimientoUsuariosDAO {
                 acciones.setAccHoraIngreso(rs.getString("accHoraIngreso"));
                 acciones.setAccIP(rs.getString("accIP"));
                 acciones.setAccAcciones(rs.getString("accAcciones"));
+                acciones.setAccUsuario(rs.getString("accUsuario"));
+                acciones.setAccNumeroRadicado(rs.getString("accNumeroRadicado"));
                             
             }
         } catch (SQLException e) {
@@ -106,7 +110,7 @@ public class CrudSeguimientoUsuariosDAO {
     }
     
     public boolean actualizar (ConsultarSeguimientoUsuarios consu){
-    String sql = "call gesdoc_sena.sp_ActualizarAccionesUsuarios(?, ?, ?, ?, ?);";
+    String sql = "call gesdoc_sena.sp_ActualizarAccionesUsuarios(?, ?, ?, ?, ?, ?, ?);";
 
 
         try {
@@ -119,6 +123,8 @@ public class CrudSeguimientoUsuariosDAO {
             ps.setString(3, consu.getAccHoraIngreso());
             ps.setString(4, consu.getAccIP());
             ps.setString(5, consu.getAccAcciones());
+            ps.setString(6, consu.getAccUsuario());
+            ps.setString(7, consu.getAccNumeroRadicado());
            
             // Ejecuta el procedimiento almacenado
             ps.execute();
