@@ -25,7 +25,6 @@ public class radicadorecibido {
     String radArchivoPdf;
     String radCorreoFuncionarioDestinatario;
 
-
     public radicadorecibido() {
     }
 
@@ -167,7 +166,5 @@ public class radicadorecibido {
         this.radCorreoFuncionarioDestinatario = radCorreoFuncionarioDestinatario;
     }
 
-   
-    
     
 }
