@@ -166,7 +166,5 @@ public class radicadorecibido {
         this.radCorreoFuncionarioDestinatario = radCorreoFuncionarioDestinatario;
     }
 
-   
-    
     
 }
