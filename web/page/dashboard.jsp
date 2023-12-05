@@ -8,10 +8,10 @@
 <div id="layoutSidenav">
     <!--debo copiar linea 10-->
     <div id="layoutSidenav_nav">
-      
-        
-        
-        
+
+
+
+
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
 
             <!--menulateral-->
@@ -29,12 +29,18 @@
 
                     </div>
                     <div class="sb-sidenav-menu-heading">Menu</div>
+                    
+                    <a class="nav-link" href="ListarSeguimiento.jsp">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-pen-to-square"></i></div>
+                        Acciones
+                    </a>
 
 
                     <a class="nav-link" href="listarusuario_1.jsp">
                         <div class="sb-nav-link-icon"><i class="fa fa-user"></i></div>
                         Usuarios
                     </a>
+
 
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"><i class="fa fa-magnifying-glass"></i></div>
@@ -115,7 +121,7 @@
                         con.close();
 
                         // Mostrar el resultado
-%>
+                %>
                 <div class="row">
                     <div class="col-xl-3 col-md-6">
                         <div class="card bg-primary text-white mb-4">
@@ -161,18 +167,18 @@
                             con.close();
 
                             // Mostrar el resultado
-%>
+                    %>
                     <div class="col-xl-3 col-md-6">
-                                   
+
                         <div class="card bg-warning text-white mb-4">
-                            
+
                             <div style="text-align: center; font-size: 36px;">
                                 <i class="fa fa-folder-open"></i>
-                                
+
                             </div>
                             <div style="text-align: center; font-size: 15px; font-family: 'Roboto', sans-serif;">Correspondencia Enviada</div>
                             <div style="text-align: center; font-size: 36px; font-family: 'Roboto', sans-serif;"><%= totalElementosenviados%></div>
-                           
+
                         </div>
                     </div>
                     <%
@@ -207,18 +213,18 @@
                             con.close();
 
                             // Mostrar el resultado
-%>
+                    %>
                     <div class="col-xl-3 col-md-6">
                         <div class="card bg-success text-white mb-4">
-                            
+
                             <div style="text-align: center; font-size: 36px;">
                                 <i class="fa fa-inbox"></i>
-                                
+
                             </div>
                             <div style="text-align: center; font-size: 15px; font-family: 'Roboto', sans-serif;">Correspondencia Recibida</div>
                             <div style="text-align: center; font-size: 36px; font-family: 'Roboto', sans-serif;"><%= totalElementosrecibido%></div>
-                            
-                            
+
+
                         </div>
                     </div>
                     <%
@@ -254,7 +260,7 @@
                             con.close();
 
                             // Mostrar el resultado
-%>
+                    %>
                     <div class="col-xl-3 col-md-6">
                         <div class="card bg-danger text-white mb-4 custom-card">
                             <div style="text-align: center; font-size: 36px;">
@@ -273,7 +279,7 @@
                         }
                     %>
 
-<div class="row">
+                    <div class="row">
                         <div class="col-xl-6">
                             <div class="card mb-4">
                                 <div class="card-header">
@@ -784,7 +790,7 @@
                 </div>
 
 
-                    
+
         </main>
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid px-4">
@@ -802,23 +808,23 @@
 
         </footer>
     </div>
-             
-<script>
-    function cerrarSesion() {
-        // Realizar una solicitud al controlador para cerrar la sesión
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'LoginController', true);
 
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                // La solicitud fue exitosa, redirigir o realizar otras acciones según sea necesario
-                window.location.href = 'index.jsp'; // Redirigir a la página de inicio, por ejemplo
-            }
-        };
+    <script>
+        function cerrarSesion() {
+            // Realizar una solicitud al controlador para cerrar la sesión
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'LoginController', true);
 
-        xhr.send();
-    }
-</script>
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    // La solicitud fue exitosa, redirigir o realizar otras acciones según sea necesario
+                    window.location.href = 'index.jsp'; // Redirigir a la página de inicio, por ejemplo
+                }
+            };
+
+            xhr.send();
+        }
+    </script>
 
 
 

@@ -94,7 +94,7 @@ public class RegistarEnviadoServlets extends HttpServlet {
             System.out.println("El usuario realizo un nuevo registro");
 
             // Ruta donde se guardarán los archivos PDF
-            String path_project = "C:\\Users\\farud\\Desktop\\admin_gesdoc -v4\\web\\Arc_PDF\\";
+            String path_project = "C:\\Users\\farud\\Desktop\\admin_gesdoc--v4-master\\web\\Arc_Env\\";
 
             // Obtener la parte del formulario que representa el archivo a cargar
             Part filePart = request.getPart("file");

@@ -5,16 +5,9 @@
 package com.gesdoc.servlet;
 
 import DAOS.CrudRadicadoRecibidoDAO;
-import DAOS.CrudSeguimientoUsuariosDAO;
-import Modelo.ConsultarSeguimientoUsuarios;
 import Modelo.radicadorecibido;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.InetAddress;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -31,11 +24,7 @@ public class EditarRecibidosServlet extends HttpServlet {
     String editar_radicado = "editar_recibidos.jsp";
     radicadorecibido radicadorecibido = new radicadorecibido();
     CrudRadicadoRecibidoDAO daorecibido = new CrudRadicadoRecibidoDAO();
-    ConsultarSeguimientoUsuarios seguimiento = new ConsultarSeguimientoUsuarios();
-    CrudSeguimientoUsuariosDAO daoseguimiento = new CrudSeguimientoUsuariosDAO();
-    String accFechaIngreso1;
-    String accHoraIngreso2;
-    String accIP3;
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -77,16 +66,15 @@ public class EditarRecibidosServlet extends HttpServlet {
         
         String acceso = "";
         String action = request.getParameter("accion");
- 
+
         if (action.equalsIgnoreCase("listar")) {
-            acceso = listar;
-            
-        }else if (action.equalsIgnoreCase("editar")) {
+            acceso = listar; // Ajusta la URL según tu estructura
+        } else if (action.equalsIgnoreCase("editar")) {
             request.setAttribute("radId", request.getParameter("id"));
-            acceso = editar_radicado;
-            
-            
-            }else if (action.equalsIgnoreCase("Actualizar")) {
+            acceso = editar_radicado; // Ajusta la URL según tu estructura
+        } else if (action.equalsIgnoreCase("Actualizar")) {
+            try {
+ 
             String radId = request.getParameter("id");
             String radNumeroRadicado = request.getParameter("numero_radicado");
             String radFechaRespuesta = request.getParameter("fecha_respuesta");
@@ -117,40 +105,25 @@ public class EditarRecibidosServlet extends HttpServlet {
 
             daorecibido.actualizarrecibido(radicadorecibido);
             
-            try {
-                    LocalDate fechaActual = LocalDate.now();
-                    DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                    String accFechaIngreso1 = fechaActual.format(formatoFecha);
+            acceso = listar; // Puedes ajustar esto según tus necesidades
+            
+            HttpSession session = request.getSession();
+                session.setAttribute("radNumeroRadicado", radNumeroRadicado);
 
-                    // Obtener la hora de ingreso (en este ejemplo, se usa la hora actual del sistema)
-                    String accHoraIngreso2 = new SimpleDateFormat("HH:mm:ss").format(new Date());
+                // Redirige al segundo servlet
+                response.sendRedirect("seguimiento_editarrecibidos"); // Ajusta la URL según tu estructura
 
-                    // Obtener la dirección IP del cliente
-                    accIP3 = InetAddress.getLocalHost().getHostAddress();
+                return; // Importante agregar esto para evitar que se ejecute el resto del código
 
-                    HttpSession session = request.getSession();
-                    String nom = (String) session.getAttribute("nom");
-
-                    // Configurar el objeto de seguimiento
-                    seguimiento.setAccFechaIngreso(accFechaIngreso1);
-                    seguimiento.setAccHoraIngreso(accHoraIngreso2);
-                    seguimiento.setAccIP(accIP3);
-                    seguimiento.setAccAcciones("El usuario editò un registro en recibidos");
-                    seguimiento.setAccUsuario(nom);
-                    seguimiento.setAccNumeroRadicado(radNumeroRadicado);
-
-                    // Agregar seguimiento a la base de datos
-                    daoseguimiento.agregar(seguimiento);
-                } catch (Exception e) {
-                    // Manejar la excepción, por ejemplo, registrar en el registro de errores
-                    e.printStackTrace();
-                }
-                acceso = listar; // Puedes ajustar esto según tus necesidades
-        
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+        }
+
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
-      vista.forward(request, response);   
+        vista.forward(request, response);
     }
+
 
     /**
      * Handles the HTTP <code>POST</code> method.
