@@ -27,21 +27,19 @@ public class LoginController extends HttpServlet {
     consultausuario cus = new consultausuario();
     UsuarioDAO usd = new UsuarioDAO();
     int r;
-    
+
     ConsultarSeguimientoUsuarios seguimiento = new ConsultarSeguimientoUsuarios();
     CrudSeguimientoUsuariosDAO daoseguimiento = new CrudSeguimientoUsuariosDAO();
     String accFechaIngreso1;
     String accHoraIngreso2;
     String accIP3;
 
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String accion = request.getParameter("accion");
         if (accion.equals("INGRESAR")) {
-            
-            
+
             LocalDate fechaActual = LocalDate.now();
             DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             String accFechaIngreso1 = fechaActual.format(formatoFecha);
@@ -51,8 +49,7 @@ public class LoginController extends HttpServlet {
 
 // Obtener la dirección IP del cliente
             accIP3 = InetAddress.getLocalHost().getHostAddress();
-            
-            
+
             String nom = request.getParameter("txtusuario");
             String contra = request.getParameter("txtclave");
             cus.setUsuNombreUsuario(nom);
@@ -61,7 +58,7 @@ public class LoginController extends HttpServlet {
             if (r == 1) {
                 HttpSession session = request.getSession();
                 session.setAttribute("nom", nom);
-                
+
                 String accFechaIngreso = request.getParameter("accFechaIngreso");
                 String accHoraIngreso = request.getParameter("accHoraIngreso");
                 String accIP = request.getParameter("accIP");
@@ -72,7 +69,7 @@ public class LoginController extends HttpServlet {
                 seguimiento.setAccFechaIngreso(accFechaIngreso1);
                 seguimiento.setAccHoraIngreso(accHoraIngreso2);
                 seguimiento.setAccIP(accIP3);
-                seguimiento.setAccAcciones("el usuario ingreso al sistema");
+                seguimiento.setAccAcciones("El usuario ingreso al sistema");
                 seguimiento.setAccUsuario(nom);
                 seguimiento.setAccNumeroRadicado("No");
 
@@ -97,16 +94,36 @@ public class LoginController extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-    HttpSession session = request.getSession(false);
+            throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        LocalDate fechaActual = LocalDate.now();
+        DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String accFechaIngreso1 = fechaActual.format(formatoFecha);
 
-    if (session != null) {
-        session.invalidate();
+// Obtener la hora de ingreso (en este ejemplo, se usa la hora actual del sistema)
+        String accHoraIngreso2 = new SimpleDateFormat("HH:mm:ss").format(new Date());
+
+// Obtener la dirección IP del cliente
+        accIP3 = InetAddress.getLocalHost().getHostAddress();
+
+        String nom = (String) session.getAttribute("nom");
+
+        seguimiento.setAccFechaIngreso(accFechaIngreso1);
+        seguimiento.setAccHoraIngreso(accHoraIngreso2);
+        seguimiento.setAccIP(accIP3);
+        seguimiento.setAccAcciones("el usuario cerro sesion");
+        seguimiento.setAccUsuario(nom);
+        seguimiento.setAccNumeroRadicado("No");
+
+        daoseguimiento.agregar(seguimiento);
+
+        if (session != null) {
+            session.invalidate();
+        }
+
+        // Puedes redirigir a la página de inicio u otra página después de cerrar la sesión
+        response.sendRedirect("index.jsp");
     }
-
-    // Puedes redirigir a la página de inicio u otra página después de cerrar la sesión
-    response.sendRedirect("index.jsp");
-}
 
     /**
      * Handles the HTTP <code>POST</code> method.
