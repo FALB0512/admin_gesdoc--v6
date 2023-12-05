@@ -132,12 +132,8 @@ public class recibidoservlet extends HttpServlet {
             acceso = agregarrecibido;
             
 
-            String path_project = "C:\\Users\\farud\\Desktop\\admin_gesdoc--v4-master\\web\\Arc_Rec\\";  // Ruta donde se guardarán los archivos PDF
-
-
-            String path_project = "C:\\Users\\ADSO\\Documents\\GitHub\\admin_gesdoc--v6\\web\\Arc_PDF\\";  // Ruta donde se guardarán los archivos PDF
-
             String path_project = "C:\\Users\\ADSO\\Documents\\GitHub\\admin_gesdoc--v6\\web\\Arc_Rec\\";  // Ruta donde se guardarán los archivos PDF
+  // Ruta donde se guardarán los archivos PDF
 
 
 
