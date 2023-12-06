@@ -13,6 +13,9 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -89,8 +92,8 @@
 
 
 
-            <div class="logo" style="left: 20%">
-                <img src="img/logo_gesdoc.png" alt="" style="width: 200px; display: block; margin-left: auto; margin-right: auto;"/>
+           <div class="logo" style="left: 20%">
+                <img src="img/logo_gesdoc.png" alt="" style="width: 200px; display: block; margin-left: -20px; margin-right: auto;"/>
             </div>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" style="color: black" href="#!"><i class="fas fa-bars" style="height: 20px"></i></button>
@@ -127,22 +130,9 @@
         <script src="js/datatables-simple-demo.js"></script>
     </body>
 </html>
-<script>
-    function cerrarSesion() {
-        // Realizar una solicitud al controlador para cerrar la sesión
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'LoginController', true);
 
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                // La solicitud fue exitosa, redirigir o realizar otras acciones según sea necesario
-                window.location.href = 'index.jsp'; // Redirigir a la página de inicio, por ejemplo
-            }
-        };
-
-        xhr.send();
-    }
-</script>
+<script src="js/cierre_automatico.js"></script>
+<script src="js/cerrarsesion.js"></script>
 
 
 <%

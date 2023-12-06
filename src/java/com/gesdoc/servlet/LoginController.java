@@ -93,37 +93,44 @@ public class LoginController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
-        LocalDate fechaActual = LocalDate.now();
-        DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String accFechaIngreso1 = fechaActual.format(formatoFecha);
+protected void doGet(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    HttpSession session = request.getSession(false);
+    LocalDate fechaActual = LocalDate.now();
+    DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    String accFechaIngreso1 = fechaActual.format(formatoFecha);
 
-// Obtener la hora de ingreso (en este ejemplo, se usa la hora actual del sistema)
-        String accHoraIngreso2 = new SimpleDateFormat("HH:mm:ss").format(new Date());
+    // Obtener la hora de ingreso (en este ejemplo, se usa la hora actual del sistema)
+    String accHoraIngreso2 = new SimpleDateFormat("HH:mm:ss").format(new Date());
 
-// Obtener la dirección IP del cliente
-        accIP3 = InetAddress.getLocalHost().getHostAddress();
+    // Obtener la dirección IP del cliente
+    accIP3 = InetAddress.getLocalHost().getHostAddress();
 
-        String nom = (String) session.getAttribute("nom");
+    String nom = (String) session.getAttribute("nom");
 
-        seguimiento.setAccFechaIngreso(accFechaIngreso1);
-        seguimiento.setAccHoraIngreso(accHoraIngreso2);
-        seguimiento.setAccIP(accIP3);
-        seguimiento.setAccAcciones("el usuario cerro sesion");
-        seguimiento.setAccUsuario(nom);
-        seguimiento.setAccNumeroRadicado("No");
+    seguimiento.setAccFechaIngreso(accFechaIngreso1);
+    seguimiento.setAccHoraIngreso(accHoraIngreso2);
+    seguimiento.setAccIP(accIP3);
+    seguimiento.setAccAcciones("Se cerro sesion");
+    seguimiento.setAccUsuario(nom);
+    seguimiento.setAccNumeroRadicado("No");
 
-        daoseguimiento.agregar(seguimiento);
+    daoseguimiento.agregar(seguimiento);
 
-        if (session != null) {
-            session.invalidate();
-        }
-
-        // Puedes redirigir a la página de inicio u otra página después de cerrar la sesión
-        response.sendRedirect("index.jsp");
+    if (session != null) {
+        session.invalidate();
     }
+
+    // Evitar el almacenamiento en caché de páginas antiguas
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    response.setHeader("Pragma", "no-cache");
+    response.setHeader("Expires", "0");
+
+    // Agregar una marca de tiempo al URL de redirección para evitar la caché
+    String redirectURL = "index.jsp?timestamp=" + System.currentTimeMillis();
+    response.sendRedirect(redirectURL);
+}
+
 
     /**
      * Handles the HTTP <code>POST</code> method.

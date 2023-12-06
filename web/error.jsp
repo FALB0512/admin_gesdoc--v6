@@ -8,6 +8,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
     <title>Error</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" rel="stylesheet" integrity="sha384-1a50d3c6d98be3a7a20a8597a2144b27b32e356b9361291843d62e8683c954cdd" crossorigin="anonymous">
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -36,4 +39,5 @@
     </div>
 </body>
 </html>
-
+<script src="js/cierre_automatico.js"></script>
+<script src="js/cerrarsesion.js"></script>
