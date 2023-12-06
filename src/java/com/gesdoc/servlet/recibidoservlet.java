@@ -132,13 +132,13 @@ public class recibidoservlet extends HttpServlet {
             acceso = agregarrecibido;
             
 
-            String path_project = "C:\\Users\\farud\\Desktop\\admin_gesdoc--v4-master\\web\\Arc_Rec\\";  // Ruta donde se guardarán los archivos PDF
-
-
-            String path_project = "C:\\Users\\ADSO\\Documents\\GitHub\\admin_gesdoc--v6\\web\\Arc_PDF\\";  // Ruta donde se guardarán los archivos PDF
 
             String path_project = "C:\\Users\\ADSO\\Documents\\GitHub\\admin_gesdoc--v6\\web\\Arc_Rec\\";  // Ruta donde se guardarán los archivos PDF
+  // Ruta donde se guardarán los archivos PDF
 
+
+
+            String path_project = "C:\\Users\\farud\\Desktop\\admin_gesdoc--v4-master\\web\\Arc_Rec\\";  // Ruta donde se guardarán los archivos PDF
 
 
             Part filePart = request.getPart("file");
@@ -275,42 +275,42 @@ public class recibidoservlet extends HttpServlet {
 
                 }
                 
-                
-                  try {
-                CrudRadicadoRecibidoDAO dao = new CrudRadicadoRecibidoDAO();
-
-                Message message = new MimeMessage(session);
-                message.setFrom(new InternetAddress(correo));
-
-                String destino = dao.obtenerCorreo(contrasena);
-
-                if (destino != null) {
-                    InternetAddress[] correos = {
-                        new InternetAddress(destino)
-                    };
-                    
-                    
-
-                    // Crear mensaje de correo
-                   
-                    String cuerpoMensaje = "Has asignado un nuevo radicado ";
-
-                    message.setRecipients(Message.RecipientType.TO, correos);
-                    message.setSubject("Inicio de Sesión Exitoso");
-                    message.setText(cuerpoMensaje);
-
-                    // Enviar el mensaje
-                    Transport.send(message);
-
-                    System.out.println("Correo electrónico enviado con éxito.");
-                } else {
-                    System.err.println("La dirección de correo electrónico de destino es nula. No se puede enviar el correo.");
-                }
-
-            } catch (MessagingException e) {
-                System.err.println("Error al enviar el correo electrónico: " + e.getMessage());
-                // Manejar la excepción adecuadamente, según tus necesidades.
-            }
+//                
+//                  try {
+//                CrudRadicadoRecibidoDAO dao = new CrudRadicadoRecibidoDAO();
+//
+//                Message message = new MimeMessage(session);
+//                message.setFrom(new InternetAddress(correo));
+//
+//                String destino = dao.obtenerCorreo(contrasena);
+//
+//                if (destino != null) {
+//                    InternetAddress[] correos = {
+//                        new InternetAddress(destino)
+//                    };
+//                    
+//                    
+//
+//                    // Crear mensaje de correo
+//                   
+//                    String cuerpoMensaje = "Has asignado un nuevo radicado ";
+//
+//                    message.setRecipients(Message.RecipientType.TO, correos);
+//                    message.setSubject("Inicio de Sesión Exitoso");
+//                    message.setText(cuerpoMensaje);
+//
+//                    // Enviar el mensaje
+//                    Transport.send(message);
+//
+//                    System.out.println("Correo electrónico enviado con éxito.");
+//                } else {
+//                    System.err.println("La dirección de correo electrónico de destino es nula. No se puede enviar el correo.");
+//                }
+//
+//            } catch (MessagingException e) {
+//                System.err.println("Error al enviar el correo electrónico: " + e.getMessage());
+//                // Manejar la excepción adecuadamente, según tus necesidades.
+//            }
 
 
 

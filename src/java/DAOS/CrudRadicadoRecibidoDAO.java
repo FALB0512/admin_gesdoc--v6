@@ -177,26 +177,6 @@ public class CrudRadicadoRecibidoDAO {
             return false; // Indica que la operación falló
         }
 }
-    
-    public String obtenerCorreo(String correo) {
-        String sql = "SELECT usuCorreo FROM gesdoc_sena.tblusuarios WHERE usuCorreo = ?";
-        try {
-            con = cn.getConection();
-            ps = con.prepareStatement(sql);
-            
-            ps.setString(1, correo);
-            
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                return rs.getString("usuCorreo");
-            }
-        } catch (Exception e) {
-            System.out.println("Error: " + e);
-        }
-        return null;
-    }
-
-    
 
     }
 
