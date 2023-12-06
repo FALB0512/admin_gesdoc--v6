@@ -9,6 +9,12 @@
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
+
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -493,6 +499,12 @@
         </footer>
     </div>
 
+             
+<script src="js/cierre_automatico.js"></script>
+<script src="js/cerrarsesion.js"></script>
+<script src="js/recargarpagina.js"></script>
+
+
     <script>
             function cerrarSesion() {
                 // Realizar una solicitud al controlador para cerrar la sesión
@@ -509,6 +521,7 @@
                 xhr.send();
             }
     </script>
+
 
 
 

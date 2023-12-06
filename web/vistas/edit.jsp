@@ -12,6 +12,9 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -30,47 +33,46 @@
         <%
             String nom = (String) session.getAttribute("nom");
 
-           if (nom != null && !nom.isEmpty()) {
-           
-            conexion cn = new conexion();
-            Connection con;
-            PreparedStatement ps;
-            ResultSet rs;
-            consultausuario usuario = new consultausuario();
-
-
             if (nom != null && !nom.isEmpty()) {
-                // Realizar la consulta SQL solo si 'nom' es un valor válido
-                String sql = "SELECT usuPrimerNombre, usuPrimerApellido FROM tblusuarios WHERE usuNombreUsuario = ?";
 
-                try {
-                    con = cn.getConection();
-                    ps = con.prepareStatement(sql);
-                    ps.setString(1, nom); // Establece 'nom' como un parámetro en la consulta SQL
-                    rs = ps.executeQuery();
+                conexion cn = new conexion();
+                Connection con;
+                PreparedStatement ps;
+                ResultSet rs;
+                consultausuario usuario = new consultausuario();
 
-                    if (rs.next()) {
-                        // Asignar los valores a 'usuario' solo si se encontraron resultados
-                        usuario.setUsuPrimerNombre(rs.getString("usuPrimerNombre"));
-                        usuario.setUsuPrimerApellido(rs.getString("usuPrimerApellido"));
+                if (nom != null && !nom.isEmpty()) {
+                    // Realizar la consulta SQL solo si 'nom' es un valor válido
+                    String sql = "SELECT usuPrimerNombre, usuPrimerApellido FROM tblusuarios WHERE usuNombreUsuario = ?";
 
-                        // Puedes imprimir los valores recuperados si es necesario
-                        String primerNombre = usuario.getUsuPrimerNombre();
-                        String primerApellido = usuario.getUsuPrimerApellido();
-                        out.println("Primer Nombre: " + primerNombre);
-                        out.println("Primer Apellido: " + primerApellido);
-                    } else {
-                        // Si no se encontraron resultados, puedes imprimir un mensaje de error o realizar alguna otra acción.
-                        out.println("No se encontraron resultados para el nombre de usuario: " + nom);
+                    try {
+                        con = cn.getConection();
+                        ps = con.prepareStatement(sql);
+                        ps.setString(1, nom); // Establece 'nom' como un parámetro en la consulta SQL
+                        rs = ps.executeQuery();
+
+                        if (rs.next()) {
+                            // Asignar los valores a 'usuario' solo si se encontraron resultados
+                            usuario.setUsuPrimerNombre(rs.getString("usuPrimerNombre"));
+                            usuario.setUsuPrimerApellido(rs.getString("usuPrimerApellido"));
+
+                            // Puedes imprimir los valores recuperados si es necesario
+                            String primerNombre = usuario.getUsuPrimerNombre();
+                            String primerApellido = usuario.getUsuPrimerApellido();
+                            out.println("Primer Nombre: " + primerNombre);
+                            out.println("Primer Apellido: " + primerApellido);
+                        } else {
+                            // Si no se encontraron resultados, puedes imprimir un mensaje de error o realizar alguna otra acción.
+                            out.println("No se encontraron resultados para el nombre de usuario: " + nom);
+                        }
+                    } catch (SQLException e) {
+                        // Manejo de excepciones
+                        e.printStackTrace();
                     }
-                } catch (SQLException e) {
-                    // Manejo de excepciones
-                    e.printStackTrace();
+                } else {
+                    // Si 'nom' es null o una cadena vacía, puedes imprimir un mensaje de error o realizar alguna otra acción.
+                    out.println("El valor de 'nom' no es válido.");
                 }
-            } else {
-                // Si 'nom' es null o una cadena vacía, puedes imprimir un mensaje de error o realizar alguna otra acción.
-                out.println("El valor de 'nom' no es válido.");
-            }
         %>
 
 
@@ -106,281 +108,265 @@
                         <!--                        <li><hr class="dropdown-divider" /></li>-->
                         <li><a class="dropdown-item" href="#" onclick="cerrarSesion()" style="font-weight: bold;">Salir</a></li>
 
-                        </li>
-                    </ul>
                 </li>
             </ul>
-        </nav>
+        </li>
+    </ul>
+</nav>
 
 
-        <form class="jotform-form" action="EditarUsuariosServlet" method="get" enctype="multipart/form-data" name="form_232663844244661" id="232663844244661" accept-charset="utf-8" autocomplete="on"><input type="hidden" name="formID" value="232663844244661" /><input type="hidden" id="JWTContainer" value="" /><input type="hidden" id="cardinalOrderNumber" value="" />
+<form class="jotform-form" action="EditarUsuariosServlet" method="get" enctype="multipart/form-data" name="form_232663844244661" id="232663844244661" accept-charset="utf-8" autocomplete="on"><input type="hidden" name="formID" value="232663844244661" /><input type="hidden" id="JWTContainer" value="" /><input type="hidden" id="cardinalOrderNumber" value="" />
 
 
-            <style>
+    <style>
 
-                .form-required{
+        .form-required{
 
-                    font-size: 20px;
-                    color: red;
-                }
+            font-size: 20px;
+            color: red;
+        }
 
-                .form-group{
-                    margin-bottom: 10px;
-                    padding: 10px;
-                    font-weight: bold;
+        .form-group{
+            margin-bottom: 10px;
+            padding: 10px;
+            font-weight: bold;
 
-                }
+        }
 
-                .titulos {
-                    padding: 10px 0px;
-                    background-color: gray;
-                    border: 2px solid gray;
-                    border-radius: 10px;
-                }
+        .titulos {
+            padding: 10px 0px;
+            background-color: gray;
+            border: 2px solid gray;
+            border-radius: 10px;
+        }
 
-                /* Estilos para el botón */
-                .btn-success {
-                    background-color: #0AAA0A; /* Fondo verde */
-                    color: white; /* Texto blanco */
-                    border: none; /* Sin borde */
-                    padding: 10px 20px; /* Espaciado interno */
-                    border-radius: 5px; /* Esquinas redondeadas */
-                    cursor: pointer; /* Cambia el cursor al pasar el ratón */
-                }
+        /* Estilos para el botón */
+        .btn-success {
+            background-color: #0AAA0A; /* Fondo verde */
+            color: white; /* Texto blanco */
+            border: none; /* Sin borde */
+            padding: 10px 20px; /* Espaciado interno */
+            border-radius: 5px; /* Esquinas redondeadas */
+            cursor: pointer; /* Cambia el cursor al pasar el ratón */
+        }
 
-                /* Estilo de hover para el botón */
-                .btn-success:hover {
-                    background-color:
+        /* Estilo de hover para el botón */
+        .btn-success:hover {
+            background-color:
 
-                    </style>
+            </style>
 
-                    <div id="layoutSidenav">
-                        <div id="layoutSidenav_nav">
-                            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <div id="layoutSidenav">
+                <div id="layoutSidenav_nav">
+                    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
 
-                                <!--menulateral-->
+                        <!--menulateral-->
 
-                                <div class="sb-sidenav-menu">
-                                    <div class="nav">
-                                        <div class="sb-sidenav-menu-heading">Gestion Documental</div>
-                                        <a class="nav-link" href="indexpanel.jsp?page=dashboard">
-                                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                            Panel de Control
-                                        </a>
+                        <div class="sb-sidenav-menu">
+                            <div class="nav">
+                                <div class="sb-sidenav-menu-heading">Gestion Documental</div>
+                                <a class="nav-link" href="indexpanel.jsp?page=dashboard">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                    Panel de Control
+                                </a>
 
-                                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                                <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
 
-                                        </div>
-                                        <div class="sb-sidenav-menu-heading">Menu</div>
-
-
-                                        <a class="nav-link" href="listarusuario_1.jsp">
-                                            <div class="sb-nav-link-icon"><i class="fa fa-user"></i></div>
-                                            Usuarios
-                                        </a>
-
-                                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                            <div class="sb-nav-link-icon"><i class="fa fa-magnifying-glass"></i></div>
-                                            Documentos
-                                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                        </a>
-                                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                            <nav class="sb-sidenav-menu-nested nav">
-                                                <a class="nav-link" href="listar_enviados.jsp">Enviados</a>
-                                                <a class="nav-link" href="listar_recibidos.jsp">Recibidos</a>
-                                                <a class="nav-link" href="listar_otros.jsp">Otros</a>
-                                            </nav>
-                                        </div>          
-
-                                        <div class="sb-sidenav-menu-heading">Radicaciones</div>
-
-                                        <a class="nav-link" href="resgiscorresenviada.jsp">
-                                            <div class="sb-nav-link-icon"><i class="fa-solid fa-folder-open"></i></div>
-                                            Correspondencia Enviada
-                                        </a>
-
-                                        <a class="nav-link" href="regiscorresrecibida1.jsp">
-                                            <div class="sb-nav-link-icon"><i class="fa-solid fa-inbox"></i></div>
-                                            Correspondencia Recibidas
-                                        </a>
-
-                                        <a class="nav-link" href="regisotros.jsp">
-                                            <div class="sb-nav-link-icon"><i class="fa fa-newspaper"></i></div>
-                                            Otros Envios Recibidos
-                                        </a>
-
-                                    </div>
                                 </div>
-                            </nav>
+                                <div class="sb-sidenav-menu-heading">Menu</div>
+
+
+                                <a class="nav-link" href="listarusuario_1.jsp">
+                                    <div class="sb-nav-link-icon"><i class="fa fa-user"></i></div>
+                                    Usuarios
+                                </a>
+
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                    <div class="sb-nav-link-icon"><i class="fa fa-magnifying-glass"></i></div>
+                                    Documentos
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="listar_enviados.jsp">Enviados</a>
+                                        <a class="nav-link" href="listar_recibidos.jsp">Recibidos</a>
+                                        <a class="nav-link" href="listar_otros.jsp">Otros</a>
+                                    </nav>
+                                </div>          
+
+                                <div class="sb-sidenav-menu-heading">Radicaciones</div>
+
+                                <a class="nav-link" href="resgiscorresenviada.jsp">
+                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-folder-open"></i></div>
+                                    Correspondencia Enviada
+                                </a>
+
+                                <a class="nav-link" href="regiscorresrecibida1.jsp">
+                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-inbox"></i></div>
+                                    Correspondencia Recibidas
+                                </a>
+
+                                <a class="nav-link" href="regisotros.jsp">
+                                    <div class="sb-nav-link-icon"><i class="fa fa-newspaper"></i></div>
+                                    Otros Envios Recibidos
+                                </a>
+
+                            </div>
                         </div>
-                        <div id="layoutSidenav_content">
-                            <main>
-                                <div class="container-fluid px-4">
+                    </nav>
+                </div>
+                <div id="layoutSidenav_content">
+                    <main>
+                        <div class="container-fluid px-4">
 
-                                    <%
-                                        UsuarioDAO dao = new UsuarioDAO();
-                                        int id = Integer.parseInt((String) request.getAttribute("usuId"));
-                                        consultausuario p = (consultausuario) dao.list(id);
-                                    %>
+                            <%
+                                UsuarioDAO dao = new UsuarioDAO();
+                                int id = Integer.parseInt((String) request.getAttribute("usuId"));
+                                consultausuario p = (consultausuario) dao.list(id);
+                            %>
 
-                                    <div class="container">
-                                        <div class="table-container">
-                                            <table class="table table-bordered">                                 
-                                                <form class="jotform-form">
-                                                    <div class="container">
-                                                        <h1 class="text-center" style=" margin-top: -15px;
-                                                        padding: 10px">Editar Usuario</h1>
+                            <div class="container">
+                                <div class="table-container">
+                                    <table class="table table-bordered">                                 
+                                        <form class="jotform-form">
+                                            <div class="container">
+                                                <h1 class="text-center" style=" margin-top: -15px;
+                                                padding: 10px">Editar Usuario</h1>
 
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <!-- Datos del remitente -->
-
-
-                                                                <div class="form-group">
-                                                                    <label for="txtprimernombre">Primer Nombre:</label>
-                                                                    <input class="form-control" type="text" id="txtprimernombre" name="txtprimernombre" value="<%= p.getUsuPrimerNombre()%>">
-                                                                </div>
-
-                                                                <div class="form-group">
-                                                                    <label for="txtprimerapellido">Primer Apellido:</label>
-                                                                    <input class="form-control" type="text" id="txtprimerapellido" name="txtprimerapellido" value="<%= p.getUsuPrimerApellido()%>">
-                                                                </div>
-
-                                                                <div class="form-group">
-                                                                    <label for="txtcorreo">Correo Electrónico:</label>
-                                                                    <input class="form-control" type="text" id="txtcorreo" name="txtcorreo" value="<%= p.getUsuCorreo()%>">
-                                                                </div>
-
-                                                            </div>
-
-                                                            <div class="col-md-6">
-
-                                                                <div class="form-group">
-                                                                    <label for="txtsegundonombre">Segundo Nombre:</label>
-                                                                    <input class="form-control" type="text" id="txtsegundonombre" name="txtsegundonombre" value="<%= p.getUsuSegundoNombre()%>">
-                                                                </div>
-
-                                                                <div class="form-group">
-                                                                    <label for="txtsegundopellido">Segundo Apellido:</label>
-                                                                    <input class="form-control" type="text" id="txtsegundopellido" name="txtsegundopellido" value="<%= p.getUsuSegundoApellido()%>">
-                                                                </div>
-
-                                                                <div class="form-group">
-                                                                    <label for="txtfecharegistro">Fecha de Registro:</label>
-                                                                    <input class="form-control" type="date" id="txtfecharegistro" name="txtfecharegistro" value="<%= p.getUsuFechaRegistro()%>">
-                                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <!-- Datos del remitente -->
 
 
-                                                            </div>
-
-                                                            <div class="col-md-6">
-                                                                <!-- Datos del remitente -->
-                                                                <div class="form-group">
-                                                                    <label for="txtnombreusuario">Nombre Usuario:</label>
-                                                                    <input class="form-control" type="text" id="txtnombreusuario" name="txtnombreusuario" value="<%= p.getUsuNombreUsuario()%>">
-                                                                </div>
-
-                                                                <div class="form-group">
-                                                                    <label for="txtcontrasena">Contraseña:</label>
-                                                                    <input class="form-control" type="password" id="txtcontrasena" name="txtcontrasena" value="<%= p.getUsuContrasena()%>">
-                                                                </div>
-
-
-                                                            </div>
-
-                                                            <div class="col-md-6">
-                                                                <!-- Datos del remitente -->
-
-
-                                                                <div class="form-group">
-                                                                    <label for="txttipoUsuario">Nivel de Acceso:</label>
-                                                                    <input class="form-control" type="text" id="txttipoUsuario" name="txttipoUsuario" value="<%= p.getUsuNivelAcceso()%>">
-                                                                </div>
-
-                                                            </div>
-
-                                                            <div class="col-md-6">
-
-
-                                                            </div>
+                                                        <div class="form-group">
+                                                            <label for="txtprimernombre">Primer Nombre:</label>
+                                                            <input class="form-control" type="text" id="txtprimernombre" name="txtprimernombre" value="<%= p.getUsuPrimerNombre()%>">
                                                         </div>
 
-                                                        <!-- Otros campos -->
                                                         <div class="form-group">
-                                                            <label for="txtobservaciones">Observaciones:</label>
-                                                            <input class="form-control" type="text" id="txtobservaciones" name="txtobservaciones" value="<%= p.getUsuObservaciones()%>">
-                                                        </div>   
+                                                            <label for="txtprimerapellido">Primer Apellido:</label>
+                                                            <input class="form-control" type="text" id="txtprimerapellido" name="txtprimerapellido" value="<%= p.getUsuPrimerApellido()%>">
+                                                        </div>
 
-                                                        <input type="hidden" name="txtusuId" value="<%= p.getUsuId()%>">
-                                                        <input type="hidden" name="token" value="<%= session.getId() %>">
+                                                        <div class="form-group">
+                                                            <label for="txtcorreo">Correo Electrónico:</label>
+                                                            <input class="form-control" type="text" id="txtcorreo" name="txtcorreo" value="<%= p.getUsuCorreo()%>">
+                                                        </div>
 
-                                                        <div class="text-center">
-                                                            <button type="submit" class="btn btn-success" name="accion" value="Actualizar">Actualizar</button>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="txtsegundonombre">Segundo Nombre:</label>
+                                                            <input class="form-control" type="text" id="txtsegundonombre" name="txtsegundonombre" value="<%= p.getUsuSegundoNombre()%>">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="txtsegundopellido">Segundo Apellido:</label>
+                                                            <input class="form-control" type="text" id="txtsegundopellido" name="txtsegundopellido" value="<%= p.getUsuSegundoApellido()%>">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="txtfecharegistro">Fecha de Registro:</label>
+                                                            <input class="form-control" type="date" id="txtfecharegistro" name="txtfecharegistro" value="<%= p.getUsuFechaRegistro()%>">
                                                         </div>
 
 
                                                     </div>
-                                                </form>
 
-                                            </table>
+                                                    <div class="col-md-6">
+                                                        <!-- Datos del remitente -->
+                                                        <div class="form-group">
+                                                            <label for="txtnombreusuario">Nombre Usuario:</label>
+                                                            <input class="form-control" type="text" id="txtnombreusuario" name="txtnombreusuario" value="<%= p.getUsuNombreUsuario()%>">
+                                                        </div>
 
-                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="txtcontrasena">Contraseña:</label>
+                                                            <input class="form-control" type="password" id="txtcontrasena" name="txtcontrasena" value="<%= p.getUsuContrasena()%>">
+                                                        </div>
 
-                                    </div>
+
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <!-- Datos del remitente -->
+
+
+                                                        <div class="form-group">
+                                                            <label for="txttipoUsuario">Nivel de Acceso:</label>
+                                                            <input class="form-control" type="text" id="txttipoUsuario" name="txttipoUsuario" value="<%= p.getUsuNivelAcceso()%>">
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-md-6">
+
+
+                                                    </div>
+                                                </div>
+
+                                                <!-- Otros campos -->
+                                                <div class="form-group">
+                                                    <label for="txtobservaciones">Observaciones:</label>
+                                                    <input class="form-control" type="text" id="txtobservaciones" name="txtobservaciones" value="<%= p.getUsuObservaciones()%>">
+                                                </div>   
+
+                                                <input type="hidden" name="txtusuId" value="<%= p.getUsuId()%>">
+                                                <input type="hidden" name="token" value="<%= session.getId()%>">
+
+                                                <div class="text-center">
+                                                    <button type="submit" class="btn btn-success" name="accion" value="Actualizar">Actualizar</button>
+                                                </div>
+
+
+                                            </div>
+                                        </form>
+
+                                    </table>
+
                                 </div>
+
+                            </div>
                         </div>
-                    </div>
-                </main>
-
-
-
+                </div>
             </div>
-        </div>
-        
-        <script src="js/alertas_usario.js" type="text/javascript"></script>
-        <script src="js/alertas_editarusuarios.js" type="text/javascript"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        </main>
 
-        <script>
-            // Función para realizar la búsqueda en tiempo real
-            document.getElementById("searchInput").addEventListener("input", function () {
-                var searchText = this.value.toLowerCase();
-                var tableRows = document.querySelectorAll(".table tbody tr");
 
-                tableRows.forEach(function (row) {
-                    var rowData = row.textContent.toLowerCase();
-                    if (rowData.includes(searchText)) {
-                        row.style.display = "";
-                    } else {
-                        row.style.display = "none";
-                    }
-                });
-            });
-        </script>
+
+    </div>
+</div>
+
+<script src="js/alertas_usario.js" type="text/javascript"></script>
+<script src="js/alertas_editarusuarios.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 <script>
-    function cerrarSesion() {
-        // Realizar una solicitud al controlador para cerrar la sesión
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'LoginController', true);
+                    // Función para realizar la búsqueda en tiempo real
+                    document.getElementById("searchInput").addEventListener("input", function () {
+                        var searchText = this.value.toLowerCase();
+                        var tableRows = document.querySelectorAll(".table tbody tr");
 
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                // La solicitud fue exitosa, redirigir o realizar otras acciones según sea necesario
-                window.location.href = 'index.jsp'; // Redirigir a la página de inicio, por ejemplo
-            }
-        };
-
-        xhr.send();
-    }
+                        tableRows.forEach(function (row) {
+                            var rowData = row.textContent.toLowerCase();
+                            if (rowData.includes(searchText)) {
+                                row.style.display = "";
+                            } else {
+                                row.style.display = "none";
+                            }
+                        });
+                    });
 </script>
 
-
-
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+<script src="js/datatables-simple-demo.js"></script>
+<script src="js/cierre_automatico.js"></script>
+<script src="js/cerrarsesion.js"></script>
+<script src="js/recargarpagina.js"></script>
 </body>
 </html>
 <%
@@ -399,16 +385,16 @@
     </head>
     <body>
         <script>
-    // Agrega una alerta de "Iniciar Sesión"
-    Swal.fire({
-        title: 'Iniciar Sesión',
-        text: 'Necesitas iniciar sesión para acceder a esta página.',
-        icon: 'info',
-        confirmButtonText: 'Iniciar sesíon'
-    }).then(() => {
-        // Redirige a "index.jsp" después de hacer clic en "OK"
-        window.location.href = 'index.jsp';
-    });
+                            // Agrega una alerta de "Iniciar Sesión"
+                            Swal.fire({
+                                title: 'Iniciar Sesión',
+                                text: 'Necesitas iniciar sesión para acceder a esta página.',
+                                icon: 'info',
+                                confirmButtonText: 'Iniciar sesíon'
+                            }).then(() => {
+                                // Redirige a "index.jsp" después de hacer clic en "OK"
+                                window.location.href = 'index.jsp';
+                            });
         </script>
     </body>
 </html>
