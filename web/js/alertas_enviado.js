@@ -1,60 +1,45 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const camposConValidacionLetras = [
-        'Dependencia',
+  const camposBloqueados = ['Dependencia',
         'asunto',
         'NombreFuncionario',
         'TipoDocumental',
+        'Antecedentes',
         'Entidad',
         'ciudad',
         'nombre_destinatario',
-        'Observaciones'
-    ];
+        'Observaciones'];
+    
+  const campoNumerico = 'anexos';
 
+  camposBloqueados.forEach(campo => {
+    const inputCampo = document.getElementById(campo);
 
-    const camposSoloNumeros = ['anexos'];
-
-    function agregarValidacionLetras(campoId) {
-        const campoInput = document.getElementById(campoId);
-
-        campoInput.addEventListener('input', function () {
-            const valorOriginal = this.value;
-            this.value = valorOriginal.replace(/[^a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\s´']/ug, '');
-
-            if (valorOriginal !== this.value && this.value.trim() === '') {
-                mostrarNotificacionError('letras');
-            }
-        });
-    }
-
-
-    function agregarValidacionSoloNumeros(campoId) {
-        const campoInput = document.getElementById(campoId);
-
-        campoInput.addEventListener('input', function () {
-            const valorOriginal = this.value;
-            this.value = valorOriginal.replace(/\D/ug, '');
-
-            if (valorOriginal !== this.value && this.value.trim() === '') {
-                mostrarNotificacionError('numeros');
-            }
-        });
-    }
-
-    function mostrarNotificacionError(tipo) {
-        let mensaje;
-        if (tipo === 'letras') {
-            mensaje = 'Este campo solo puede contener letras.';
-        } else if (tipo === 'numeros') {
-            mensaje = 'Este campo solo puede contener n\u00FAmeros.';
-        }
-
+    inputCampo.addEventListener('keydown', function (event) {
+      // Verificar si la tecla presionada es un número (0-9)
+      if (event.key >= '0' && event.key <= '9') {
+        event.preventDefault();
+        // Mostrar una alerta SweetAlert indicando que los números no están permitidos
         Swal.fire({
-            icon: 'warning',
-            title: 'Notificaci\u00f3n',
-            text: mensaje,
+          icon: 'warning',
+          title: 'Notificaci\u00f3n',
+          text: `Este campo solo puede contener letras.`,
         });
-    }
+      }
+    });
+  });
 
-    camposConValidacionLetras.forEach(agregarValidacionLetras);
-    camposSoloNumeros.forEach(agregarValidacionSoloNumeros);
+  const inputAnexos = document.getElementById(campoNumerico);
+
+  inputAnexos.addEventListener('keydown', function (event) {
+    // Verificar si la tecla presionada no es un número (0-9)
+    if (!(event.key >= '0' && event.key <= '9')) {
+      event.preventDefault();
+      // Mostrar una alerta SweetAlert indicando que solo se permiten números en este campo
+      Swal.fire({
+        icon: 'warning',
+        title: 'Notificaci\u00f3n',
+        text: 'Este campo solo puede contener n\u00FAmeros.'
+      });
+    }
+  });
 });

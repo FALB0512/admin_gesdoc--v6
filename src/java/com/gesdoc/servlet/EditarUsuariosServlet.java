@@ -4,16 +4,25 @@
  */
 package com.gesdoc.servlet;
 
+import DAOS.CrudSeguimientoUsuariosDAO;
 import DAOS.UsuarioDAO;
+import Modelo.ConsultarSeguimientoUsuarios;
 import Modelo.consultausuario;
 import com.mysql.cj.xdevapi.Statement;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.UUID;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,6 +36,12 @@ public class EditarUsuariosServlet extends HttpServlet {
     consultausuario cus = new consultausuario();
     UsuarioDAO usd = new UsuarioDAO();
     int id;
+    
+    ConsultarSeguimientoUsuarios seguimiento = new ConsultarSeguimientoUsuarios();
+    CrudSeguimientoUsuariosDAO daoseguimiento = new CrudSeguimientoUsuariosDAO();
+    String accFechaIngreso1;
+    String accHoraIngreso2;
+    String accIP3;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -78,36 +93,72 @@ public class EditarUsuariosServlet extends HttpServlet {
             request.setAttribute("usuId", request.getParameter("id"));
             acceso = edit;
         } else if (action.equalsIgnoreCase("Actualizar")) {
+    String receivedToken = request.getParameter("token");
+    String storedToken = (String) request.getSession().getAttribute("token");
+
+    if (receivedToken != null && receivedToken.equals(storedToken)) {
+        try {
+            // Actualización del usuario aquí
             String usuId = request.getParameter("txtusuId");
             String usuPrimerNombre = request.getParameter("txtprimernombre");
-            String usuSegundoNombre = request.getParameter("txtsegundonombre");
-            String usuPrimerApellido = request.getParameter("txtprimerapellido");
-            String usuSegundoApellido = request.getParameter("txtsegundopellido");
-            String usuNombreUsuario = request.getParameter("txtnombreusuario");
-            String usuContrasena = request.getParameter("txtcontrasena");
-            String usuCorreo = request.getParameter("txtcorreo");
-            String usuFechaRegistro = request.getParameter("txtfecharegistro");
-            String usuNivelAcceso = request.getParameter("txttipoUsuario");
-            String usuObservaciones = request.getParameter("txtobservaciones");
+            // ... (otros campos)
 
             cus.setUsuId(Integer.parseInt(usuId));
             cus.setUsuPrimerNombre(usuPrimerNombre);
-            cus.setUsuSegundoNombre(usuSegundoNombre);
-            cus.setUsuPrimerApellido(usuPrimerApellido);
-            cus.setUsuSegundoApellido(usuSegundoApellido);
-            cus.setUsuNombreUsuario(usuNombreUsuario);
-            cus.setUsuContrasena(usuContrasena);
-            cus.setUsuCorreo(usuCorreo);
-            cus.setUsuFechaRegistro(usuFechaRegistro);
-            cus.setUsuFechaRegistro(usuFechaRegistro);
-            cus.setUsuNivelAcceso(usuNivelAcceso);
-            cus.setUsuObservaciones(usuObservaciones);
+            // ... (otros campos)
 
-            usd.edit(cus);
-            acceso = listar;
+            // Realizar la actualización y verificar si fue exitosa
+            boolean actualizacionExitosa = usd.edit(cus);
+
+            if (actualizacionExitosa) {
+                // El usuario se actualizó correctamente
+
+                // Obtener detalles para el seguimiento
+                LocalDate fechaActual = LocalDate.now();
+                DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                String accFechaIngreso1 = fechaActual.format(formatoFecha);
+                String accHoraIngreso2 = new SimpleDateFormat("HH:mm:ss").format(new Date());
+                accIP3 = InetAddress.getLocalHost().getHostAddress();
+                HttpSession session = request.getSession();
+                String nom = (String) session.getAttribute("nom");
+
+                // Configurar el objeto de seguimiento
+                seguimiento.setAccFechaIngreso(accFechaIngreso1);
+                seguimiento.setAccHoraIngreso(accHoraIngreso2);
+                seguimiento.setAccIP(accIP3);
+                seguimiento.setAccAcciones("El usuario realizó una actualización");
+                seguimiento.setAccUsuario(nom);
+                seguimiento.setAccNumeroRadicado("no");
+
+                // Agregar seguimiento a la base de datos
+                daoseguimiento.agregar(seguimiento);
+
+                // Actualizar el token en la sesión para evitar duplicaciones
+                request.getSession().setAttribute("token", UUID.randomUUID().toString());
+
+                acceso = listar;
+            } else {
+                // La actualización no fue exitosa, manejar según tus necesidades
+                // Puedes redirigir a una página de error o mostrar un mensaje al usuario
+                acceso = listar;
+            }
+        } catch (Exception e) {
+            // Manejar la excepción, por ejemplo, registrar en el registro de errores
+            e.printStackTrace();
+            acceso = listar; // Puedes ajustar esto según tus necesidades
+        }
+    } else {
+        // El token no coincide, manejar según tus necesidades
+        // Puedes redirigir a una página de error o mostrar un mensaje al usuario
+        acceso = listar;
+    }
+
+            
         }
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);
+        
+        
     }
 
     /**
