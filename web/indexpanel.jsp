@@ -92,8 +92,8 @@
 
 
 
-            <div class="logo" style="left: 20%">
-                <img src="img/logo_gesdoc.png" alt="" style="width: 200px; display: block; margin-left: auto; margin-right: auto;"/>
+           <div class="logo" style="left: 20%">
+                <img src="img/logo_gesdoc.png" alt="" style="width: 200px; display: block; margin-left: -20px; margin-right: auto;"/>
             </div>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" style="color: black" href="#!"><i class="fas fa-bars" style="height: 20px"></i></button>

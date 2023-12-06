@@ -12,19 +12,27 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/noty@3.1.4/dist/noty.css" />
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
         <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
         <meta http-equiv="Pragma" content="no-cache">
         <meta http-equiv="Expires" content="0">
+
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>GESDOC</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <link href="consultausuario.css" rel="stylesheet" type="text/css"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         
 
         
@@ -43,13 +51,13 @@
                 consultausuario usuario = new consultausuario();
 
                 if (nom != null && !nom.isEmpty()) {
-                    // Realizar la consulta SQL solo si 'nom' es un valor válido
+                    // Realizar la consulta SQL solo si 'nom' es un valor vÃ¡lido
                     String sql = "SELECT usuPrimerNombre, usuPrimerApellido FROM tblusuarios WHERE usuNombreUsuario = ?";
 
                     try {
                         con = cn.getConection();
                         ps = con.prepareStatement(sql);
-                        ps.setString(1, nom); // Establece 'nom' como un parámetro en la consulta SQL
+                        ps.setString(1, nom); // Establece 'nom' como un parÃ¡metro en la consulta SQL
                         rs = ps.executeQuery();
 
                         if (rs.next()) {
@@ -62,7 +70,7 @@
                             String primerApellido = usuario.getUsuPrimerApellido();
 
                         } else {
-                            // Si no se encontraron resultados, puedes imprimir un mensaje de error o realizar alguna otra acción.
+                            // Si no se encontraron resultados, puedes imprimir un mensaje de error o realizar alguna otra acciÃ³n.
                             out.println("No se encontraron resultados para el nombre de usuario: " + nom);
                         }
                     } catch (SQLException e) {
@@ -70,13 +78,13 @@
                         e.printStackTrace();
                     }
                 } else {
-                    // Si 'nom' es null o una cadena vacía, puedes imprimir un mensaje de error o realizar alguna otra acción.
-                    out.println("El valor de 'nom' no es válido.");
+                    // Si 'nom' es null o una cadena vacÃ­a, puedes imprimir un mensaje de error o realizar alguna otra acciÃ³n.
+                    out.println("El valor de 'nom' no es vÃ¡lido.");
                 }
         %>
 
         <nav class="sb-topnav navbar navbar-expand " style="background-color:#ffff; width: 215vh;">
-            <!-- Contenido de tu barra de navegación -->
+            <!-- Contenido de tu barra de navegaciÃ³n -->
 
 
             <!--Navbar Brand-->
@@ -202,17 +210,17 @@
                                         border-radius: 10px;
                                     }
 
-                                    /* Estilos para el botón */
+                                    /* Estilos para el botÃ³n */
                                     .btn-success {
                                         background-color: #0AAA0A; /* Fondo verde */
                                         color: white; /* Texto blanco */
                                         border: none; /* Sin borde */
                                         padding: 10px 20px; /* Espaciado interno */
                                         border-radius: 5px; /* Esquinas redondeadas */
-                                        cursor: pointer; /* Cambia el cursor al pasar el ratón */
+                                        cursor: pointer; /* Cambia el cursor al pasar el ratÃ³n */
                                     }
 
-                                    /* Estilo de hover para el botón */
+                                    /* Estilo de hover para el botÃ³n */
                                     .btn-success:hover {
                                         background-color:
 
@@ -252,7 +260,7 @@
                                             <div class="col-md-6" >
 
                                                 <div class="form-group" >
-                                                    <label for="fecha_recepcion">Fecha de Recepción<span class="form-required">*</span></label>
+                                                    <label for="fecha_recepcion">Fecha de RecepciÃ³n<span class="form-required">*</span></label>
                                                     <input type="date" name="fecha_recepcion" class="form-control" id="fecha_recepcion" value="<%= p.getEnvFechaRadicacion()%>" required>
                                                 </div>
 
@@ -350,37 +358,37 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <script>
-        // Función para obtener el año actual
+        // FunciÃ³n para obtener el aÃ±o actual
         function getCurrentYear() {
             return new Date().getFullYear();
         }
 
-        // Función para obtener el último año registrado en el almacenamiento local
+        // FunciÃ³n para obtener el Ãºltimo aÃ±o registrado en el almacenamiento local
         function getLastYear() {
             return parseInt(localStorage.getItem("ultimoYear")) || getCurrentYear();
         }
 
-        // Función para obtener el último número generado en el año actual
+        // FunciÃ³n para obtener el Ãºltimo nÃºmero generado en el aÃ±o actual
         function getLastNumberForCurrentYear() {
             var currentYear = getCurrentYear();
             return parseInt(localStorage.getItem("ultimoNumero" + currentYear)) || 0;
         }
 
-        // Función para reiniciar el contador cuando cambia el año
+        // FunciÃ³n para reiniciar el contador cuando cambia el aÃ±o
         function resetCounterIfNeeded() {
             var currentYear = getCurrentYear();
             var lastYear = getLastYear();
 
             if (currentYear !== lastYear) {
                 localStorage.setItem("ultimoYear", currentYear);
-                localStorage.removeItem("ultimoNumero" + currentYear); // Reinicia el contador para el nuevo año
+                localStorage.removeItem("ultimoNumero" + currentYear); // Reinicia el contador para el nuevo aÃ±o
             }
         }
 
         document.getElementById("generarBtn").addEventListener("click", function () {
             resetCounterIfNeeded();
 
-            var confirmacion = confirm("¿Desea generar un número de radicado?");
+            var confirmacion = confirm("Â¿Desea generar un nÃºmero de radicado?");
 
             if (confirmacion) {
                 var numero = getLastNumberForCurrentYear() + 1;
@@ -388,11 +396,11 @@
                 localStorage.setItem("ultimoNumero" + currentYear, numero);
 
                 var numeroFormateado = numero.toString().padStart(4, "0"); // Formatea como "0001", "0002", ...
-                alert("Tu número de radicado es: 2-" + numeroFormateado);
+                alert("Tu nÃºmero de radicado es: 2-" + numeroFormateado);
             }
         });
 
-        // Llamamos a resetCounterIfNeeded al cargar la página para asegurarnos de que el contador esté configurado correctamente
+        // Llamamos a resetCounterIfNeeded al cargar la pÃ¡gina para asegurarnos de que el contador estÃ© configurado correctamente
         resetCounterIfNeeded();
 
     </script>
@@ -406,7 +414,7 @@
 
 <%
 } else {
-    // Realiza alguna acción si 'nom' es nulo o una cadena vacía
+    // Realiza alguna acciÃ³n si 'nom' es nulo o una cadena vacÃ­a
 %>
 
 <!DOCTYPE html>
@@ -415,19 +423,19 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Redirección </title>
+        <title>RedirecciÃ³n </title>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     </head>
     <body>
         <script>
-    // Agrega una alerta de "Iniciar Sesión"
+    // Agrega una alerta de "Iniciar SesiÃ³n"
     Swal.fire({
-        title: 'Iniciar Sesión',
-        text: 'Necesitas iniciar sesión para acceder a esta página.',
+        title: 'Iniciar SesiÃ³n',
+        text: 'Necesitas iniciar sesiÃ³n para acceder a esta pÃ¡gina.',
         icon: 'info',
-        confirmButtonText: 'Iniciar sesíon'
+        confirmButtonText: 'Iniciar sesÃ­on'
     }).then(() => {
-        // Redirige a "index.jsp" después de hacer clic en "OK"
+        // Redirige a "index.jsp" despuÃ©s de hacer clic en "OK"
         window.location.href = 'index.jsp';
     });
         </script>

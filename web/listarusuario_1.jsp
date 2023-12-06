@@ -77,8 +77,7 @@
                             // Puedes imprimir los valores recuperados si es necesario
                             String primerNombre = usuario.getUsuPrimerNombre();
                             String primerApellido = usuario.getUsuPrimerApellido();
-                            out.println("Primer Nombre: " + primerNombre);
-                            out.println("Primer Apellido: " + primerApellido);
+                            
                         } else {
                             // Si no se encontraron resultados, puedes imprimir un mensaje de error o realizar alguna otra acción.
                             out.println("No se encontraron resultados para el nombre de usuario: " + nom);
